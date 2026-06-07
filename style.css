@@ -19,8 +19,6 @@
     --white-color: #fff;
     --disabled-color: #fff3;
     --card-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.4);
-    --text-glow: 0 2px 5px rgba(124, 240, 61, 0.2);
-    --gradient-primary: linear-gradient(135deg, #7cf03d, #5cb85c);
 }
 
 html {
@@ -34,7 +32,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== TYPOGRAPHY IMPROVEMENTS ===== */
+/* ===== TYPOGRAPHY ===== */
 p, li, .desc, .portfolio-detail p, .resume-item p, .contact-detail .detail p {
     line-height: 1.65;
     letter-spacing: 0.02em;
@@ -78,7 +76,6 @@ header.active {
 
 .logo {
     font-size: 3rem;
-    color: var(--white-color);
     font-weight: 800;
     background: linear-gradient(135deg, #fff, var(--main-color));
     -webkit-background-clip: text;
@@ -117,7 +114,7 @@ nav a.active::after {
     cursor: pointer;
 }
 
-/* ===== ANIMATED BARS BACKGROUND ===== */
+/* ===== ANIMATED BARS ===== */
 .bars-box {
     position: fixed;
     width: 100%;
@@ -136,12 +133,8 @@ nav a.active::after {
 }
 
 @keyframes hide-bars {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-100%);
-    }
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
 }
 
 .bars-box.active .bar {
@@ -150,12 +143,8 @@ nav a.active::after {
 }
 
 @keyframes show-bars {
-    0% {
-        transform: translateY(-100%);
-    }
-    100% {
-        transform: translateY(0);
-    }
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(0); }
 }
 
 /* ===== SECTIONS ===== */
@@ -167,7 +156,6 @@ section {
     visibility: hidden;
     opacity: 0;
     overflow-y: auto;
-    transition: visibility 0s, opacity 0.3s;
 }
 
 section.active {
@@ -228,14 +216,8 @@ section.active {
 }
 
 @keyframes display-text {
-    0%, 20%, 100% {
-        display: inline-block;
-        opacity: 1;
-    }
-    25%, 95% {
-        display: none;
-        opacity: 0;
-    }
+    0%, 20%, 100% { display: inline-block; opacity: 1; }
+    25%, 95% { display: none; opacity: 0; }
 }
 
 .dynamic-headline span::before {
@@ -250,12 +232,8 @@ section.active {
 }
 
 @keyframes fill-text {
-    10%, 100% {
-        width: 0;
-    }
-    70%, 90% {
-        width: 100%;
-    }
+    10%, 100% { width: 0; }
+    70%, 90% { width: 100%; }
 }
 
 .home-detail p {
@@ -334,21 +312,8 @@ section.active {
     animation: rotate-border 8s linear infinite;
 }
 
-.home-img .img-box::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: conic-gradient(transparent, transparent, transparent, var(--main-color));
-    border-radius: 50%;
-    animation: rotate-border 8s linear infinite;
-    animation-delay: -4s;
-}
-
 @keyframes rotate-border {
-    100% {
-        transform: rotate(360deg);
-    }
+    100% { transform: rotate(360deg); }
 }
 
 .home-img .img-item {
@@ -416,24 +381,6 @@ section.active {
     color: var(--main-color);
 }
 
-.services-box .icon a {
-    display: inline-flex;
-    background: var(--white-color);
-    border-radius: 50%;
-    padding: 1rem;
-    transition: 0.5s;
-}
-
-.services-box:hover .icon a {
-    background: var(--main-color);
-}
-
-.services-box .icon a i {
-    font-size: 3rem;
-    color: var(--bg-color);
-    transform: rotate(225deg);
-}
-
 .services-box h3 {
     font-size: 2.2rem;
     margin: 1rem 0;
@@ -444,7 +391,7 @@ section.active {
     color: #ddd;
 }
 
-/* ===== RESUME SECTION - FIXED TEXT DISPLAY ===== */
+/* ===== RESUME SECTION - COMPLETELY FIXED ===== */
 .resume-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -462,6 +409,7 @@ section.active {
     padding: 1.8rem;
     border-radius: 1.5rem;
     border-left: 4px solid var(--main-color);
+    line-height: 1.6;
 }
 
 .resume-btn {
@@ -475,6 +423,7 @@ section.active {
     cursor: pointer;
     transition: 0.2s;
     color: white;
+    text-align: center;
 }
 
 .resume-btn.active {
@@ -507,7 +456,7 @@ section.active {
     }
 }
 
-/* ===== RESUME LIST - IMPROVED SCROLLING & SPACING ===== */
+/* ===== RESUME LIST - SCROLLABLE AREA ===== */
 .resume-list {
     display: flex;
     flex-direction: column;
@@ -517,7 +466,6 @@ section.active {
     padding-right: 1rem;
 }
 
-/* Custom scrollbar styling */
 .resume-list::-webkit-scrollbar {
     width: 8px;
 }
@@ -532,25 +480,21 @@ section.active {
     border-radius: 10px;
 }
 
-.resume-list::-webkit-scrollbar-thumb:hover {
-    background: #5cb85c;
-}
-
 /* ===== RESUME ITEM - FIXED TEXT DISPLAY ===== */
 .resume-item {
     background: var(--second-bg-color);
     border-radius: 1.6rem;
-    padding: 2.2rem;
+    padding: 2rem;
     border-left: 5px solid var(--main-color);
     transition: 0.3s;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    white-space: normal;
 }
 
 .resume-item:hover {
     transform: translateX(5px);
     background: #3a4455;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .resume-item .year {
@@ -558,7 +502,6 @@ section.active {
     font-weight: 700;
     font-size: 1.4rem;
     letter-spacing: 0.5px;
-    margin-bottom: 0.5rem;
     display: inline-block;
 }
 
@@ -578,8 +521,8 @@ section.active {
     display: inline-block;
 }
 
-/* FIXED: Proper text display in experience description */
-.resume-item p:last-child {
+/* CRITICAL FIX: Experience description text */
+.resume-item p {
     font-size: 1.45rem;
     color: #e0e0e0;
     line-height: 1.7;
@@ -588,9 +531,15 @@ section.active {
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
+    word-break: break-word;
 }
 
-/* Skills Section */
+/* Remove any conflicting margins */
+.resume-item p:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== SKILLS SECTION ===== */
 .resume-detail.skills .resume-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -624,7 +573,7 @@ section.active {
     font-weight: 500;
 }
 
-/* About Me Section */
+/* ===== ABOUT ME SECTION ===== */
 .resume-detail.about .resume-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -645,6 +594,7 @@ section.active {
     font-weight: 500;
     flex-wrap: wrap;
     gap: 1rem;
+    margin-top: 0;
 }
 
 .resume-detail.about .resume-item p span {
@@ -696,7 +646,7 @@ section.active {
 }
 
 .portfolio-detail h3 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
     padding-right: 50px;
 }
@@ -907,7 +857,6 @@ form {
         grid-template-columns: 1fr;
     }
     
-    /* Fix for resume items on mobile */
     .resume-item {
         padding: 1.8rem;
     }
@@ -916,8 +865,12 @@ form {
         font-size: 1.8rem;
     }
     
-    .resume-item p:last-child {
+    .resume-item p {
         font-size: 1.4rem;
+    }
+    
+    .resume-list {
+        max-height: 50vh;
     }
 }
 
@@ -949,7 +902,6 @@ form {
         grid-template-columns: 1fr;
     }
     
-    /* Additional mobile fixes */
     .resume-item {
         padding: 1.5rem;
     }
@@ -959,7 +911,7 @@ form {
     }
 }
 
-/* ===== SCROLLBAR CUSTOMIZATION ===== */
+/* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar {
     width: 10px;
 }
