@@ -1,166 +1,415 @@
-const navLinks = document.querySelectorAll('header nav a');
-const logoLink = document.querySelector('.logo');
+// ===== DOM Elements =====
+const header = document.querySelector('header');
+const menuIcon = document.getElementById('menu-icon');
+const nav = document.querySelector('nav');
+const navLinks = document.querySelectorAll('nav a');
 const sections = document.querySelectorAll('section');
-const menuIcon = document.querySelector('#menu-icon');
-const navbar = document.querySelector('header nav');
+const barsBox = document.querySelector('.bars-box');
+const resumeBtns = document.querySelectorAll('.resume-btn');
+const resumeDetails = document.querySelectorAll('.resume-detail');
 
-// Menu Toggle
-menuIcon.addEventListener('click', () => {
-    menuIcon.classList.toggle('bx-x');
-    navbar.classList.toggle('active');
+// ===== Mobile Menu Toggle =====
+if (menuIcon) {
+    menuIcon.addEventListener('click', () => {
+        nav.classList.toggle('active');
+        menuIcon.classList.toggle('bx-x');
+    });
+}
+
+// ===== Close mobile menu when clicking a link =====
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        if (menuIcon) menuIcon.classList.remove('bx-x');
+    });
 });
 
-// Active Page Handler
-const activePage = () => {
-    const header = document.querySelector('header');
-    const barsBox = document.querySelector('.bars-box');
+// ===== Navigation & Section Switching =====
+function handleNavigation() {
+    const hash = window.location.hash || '#home';
+    const targetId = hash.substring(1);
     
-    header.classList.remove('active');
-    setTimeout(() => {
-        header.classList.add('active');
-    }, 1100);
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-    });
-    
-    barsBox.classList.remove('active');
-    setTimeout(() => {
-        barsBox.classList.add('active');
-    }, 1100);
-    
+    // Update active section
     sections.forEach(section => {
-        section.classList.remove('active');
+        if (section.id === targetId || (targetId === '' && section.id === 'home')) {
+            section.classList.add('active');
+        } else {
+            section.classList.remove('active');
+        }
     });
     
-    menuIcon.classList.remove('bx-x');
-    navbar.classList.remove('active');
-};
-
-// Navigation Links
-navLinks.forEach((link, idx) => {
-    link.addEventListener('click', () => {
-        if (!link.classList.contains('active')) {
-            activePage();
+    // Update active nav link
+    navLinks.forEach(link => {
+        const linkHash = link.getAttribute('href');
+        if (linkHash === hash || (hash === '#home' && linkHash === '#home')) {
             link.classList.add('active');
-            setTimeout(() => {
-                sections[idx].classList.add('active');
-            }, 1100);
+        } else {
+            link.classList.remove('active');
+        }
+    });
+    
+    // Update header active state
+    if (header) header.classList.add('active');
+    
+    // Hide bars box after animation
+    if (barsBox && barsBox.classList.contains('active')) {
+        setTimeout(() => {
+            barsBox.classList.remove('active');
+        }, 500);
+    }
+}
+
+// ===== Smooth Scroll for Navigation =====
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+            // Update URL hash without jumping
+            history.pushState(null, null, `#${targetId}`);
+            handleNavigation();
+            
+            // Smooth scroll to section
+            targetSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
     });
 });
 
-// Logo Link
-logoLink.addEventListener('click', () => {
-    if (!navLinks[0].classList.contains('active')) {
-        activePage();
-        navLinks[0].classList.add('active');
-        setTimeout(() => {
-            sections[0].classList.add('active');
-        }, 1100);
+// ===== Resume Tab Switching =====
+if (resumeBtns.length > 0) {
+    resumeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            resumeBtns.forEach(btn => btn.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Get tab identifier
+            const tabId = btn.getAttribute('data-tab');
+            
+            // Remove active class from all details and add to selected
+            resumeDetails.forEach(detail => {
+                detail.classList.remove('active');
+                if (detail.id === `${tabId}-detail` || 
+                    (detail.classList.contains(tabId) && !detail.id)) {
+                    detail.classList.add('active');
+                }
+            });
+        });
+    });
+}
+
+// ===== Handle initial load and hash changes =====
+window.addEventListener('load', () => {
+    // Set default active states if no hash
+    if (!window.location.hash || window.location.hash === '') {
+        window.location.hash = '#home';
+    }
+    handleNavigation();
+    
+    // Ensure resume first tab is active by default
+    if (resumeBtns.length > 0 && !document.querySelector('.resume-btn.active')) {
+        resumeBtns[0].classList.add('active');
+    }
+    
+    // Set default resume detail visibility
+    if (resumeDetails.length > 0 && !document.querySelector('.resume-detail.active')) {
+        const firstDetail = document.querySelector('.resume-detail.experience');
+        if (firstDetail) firstDetail.classList.add('active');
     }
 });
 
-// Resume Tab Buttons
-const resumeBtns = document.querySelectorAll('.resume-btn');
-resumeBtns.forEach((btn, idx) => {
-    btn.addEventListener('click', () => {
-        const resumeDetails = document.querySelectorAll('.resume-detail');
-        
-        resumeBtns.forEach(btn => {
-            btn.classList.remove('active');
-        });
-        
-        btn.classList.add('active');
-        
-        resumeDetails.forEach(detail => {
-            detail.classList.remove('active');
-        });
-        
-        resumeDetails[idx].classList.add('active');
-    });
-});
+window.addEventListener('hashchange', handleNavigation);
 
-// Portfolio Carousel (if applicable)
-const arrowRight = document.querySelector('.portfolio-box .navigation .arrow-right');
-const arrowLeft = document.querySelector('.portfolio-box .navigation .arrow-left');
-
-if (arrowRight && arrowLeft) {
-    let index = 0;
-    
-    const activePortfolio = () => {
-        const imgSlide = document.querySelector('.portfolio-carousel .img-slide');
-        const portfolioDetails = document.querySelectorAll('.portfolio-detail');
-        
-        if (imgSlide) {
-            imgSlide.style.transform = `translateX(calc(${index * -100}% - ${index * 2}rem))`;
-        }
-        
-        portfolioDetails.forEach(detail => {
-            detail.classList.remove('active');
-        });
-        
-        if (portfolioDetails[index]) {
-            portfolioDetails[index].classList.add('active');
-        }
-    };
-    
-    arrowRight.addEventListener('click', () => {
-        if (index < 4) {
-            index++;
-            arrowLeft.classList.remove('disabled');
-        } else {
-            index = 5;
-            arrowRight.classList.add('disabled');
-        }
-        activePortfolio();
-    });
-    
-    arrowLeft.addEventListener('click', () => {
-        if (index > 1) {
-            index--;
-            arrowRight.classList.remove('disabled');
-        } else {
-            index = 0;
-            arrowLeft.classList.add('disabled');
-        }
-        activePortfolio();
+// ===== Dynamic Headline Animation Enhancement =====
+// Ensure dynamic headline spans are properly animated
+const dynamicSpans = document.querySelectorAll('.dynamic-headline span');
+if (dynamicSpans.length > 0) {
+    // Reset animation by reflow (fix for any animation issues)
+    dynamicSpans.forEach(span => {
+        span.style.animation = 'none';
+        span.offsetHeight; // trigger reflow
+        span.style.animation = null;
     });
 }
 
-// Contact Form Submission
+// ===== Contact Form Handling =====
 const contactForm = document.querySelector('.contact form');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        // Get form values
-        const fullName = this.querySelector('input[type="text"]').value;
+        // Get form fields
+        const inputs = contactForm.querySelectorAll('input, textarea');
+        let isValid = true;
+        let formData = {};
         
-        // Show success message
-        alert(`Thank you for your message, ${fullName}! I will get back to you soon.`);
+        inputs.forEach(input => {
+            if (input.hasAttribute('required') && !input.value.trim()) {
+                isValid = false;
+                input.style.borderColor = '#ff4444';
+                input.style.boxShadow = '0 0 5px rgba(255, 68, 68, 0.5)';
+            } else {
+                input.style.borderColor = '';
+                input.style.boxShadow = '';
+                if (input.name) {
+                    formData[input.name] = input.value;
+                } else if (input.placeholder) {
+                    formData[input.placeholder] = input.value;
+                }
+            }
+        });
         
-        // Reset form
-        this.reset();
+        if (isValid) {
+            // Show success message
+            showNotification('Message sent successfully! I will get back to you soon.', 'success');
+            contactForm.reset();
+        } else {
+            showNotification('Please fill in all required fields.', 'error');
+        }
+    });
+    
+    // Remove error styling on input
+    const formInputs = contactForm.querySelectorAll('input, textarea');
+    formInputs.forEach(input => {
+        input.addEventListener('input', () => {
+            input.style.borderColor = '';
+            input.style.boxShadow = '';
+        });
     });
 }
 
-// Smooth Scroll for Navigation Links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#' && href !== '#home') {
-            // e.preventDefault();
-            // const target = document.querySelector(href);
-            // if (target) {
-            //     target.scrollIntoView({ behavior: 'smooth' });
-            // }
+// ===== Notification System =====
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="bx ${type === 'success' ? 'bx-check-circle' : type === 'error' ? 'bx-error-circle' : 'bx-info-circle'}"></i>
+            <span>${message}</span>
+        </div>
+        <button class="notification-close">&times;</button>
+    `;
+    
+    // Style the notification
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#4caf50' : type === 'error' ? '#f44336' : '#2196f3'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        z-index: 10000;
+        animation: slideInRight 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        font-size: 1.4rem;
+        min-width: 280px;
+        max-width: 400px;
+    `;
+    
+    const closeBtn = notification.querySelector('.notification-close');
+    closeBtn.style.cssText = `
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        margin-left: auto;
+        padding: 0 5px;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification && notification.parentNode) {
+            notification.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => {
+                if (notification.parentNode) notification.remove();
+            }, 300);
+        }
+    }, 5000);
+    
+    // Close button functionality
+    closeBtn.addEventListener('click', () => {
+        notification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => {
+            if (notification.parentNode) notification.remove();
+        }, 300);
+    });
+}
+
+// Add animation keyframes for notifications
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// ===== Scroll to top button (optional enhancement) =====
+const createScrollTopButton = () => {
+    const scrollBtn = document.createElement('button');
+    scrollBtn.innerHTML = '<i class="bx bx-up-arrow-alt"></i>';
+    scrollBtn.className = 'scroll-top-btn';
+    scrollBtn.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--main-color);
+        color: var(--bg-color);
+        border: none;
+        cursor: pointer;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(124, 240, 61, 0.3);
+    `;
+    
+    document.body.appendChild(scrollBtn);
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollBtn.style.opacity = '1';
+            scrollBtn.style.visibility = 'visible';
+        } else {
+            scrollBtn.style.opacity = '0';
+            scrollBtn.style.visibility = 'hidden';
+        }
+    });
+    
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    scrollBtn.addEventListener('mouseenter', () => {
+        scrollBtn.style.transform = 'translateY(-5px)';
+        scrollBtn.style.boxShadow = '0 6px 20px rgba(124, 240, 61, 0.5)';
+    });
+    
+    scrollBtn.addEventListener('mouseleave', () => {
+        scrollBtn.style.transform = 'translateY(0)';
+        scrollBtn.style.boxShadow = '0 4px 12px rgba(124, 240, 61, 0.3)';
+    });
+};
+
+// Initialize scroll to top button after a short delay
+setTimeout(createScrollTopButton, 1000);
+
+// ===== Active nav link update on scroll =====
+window.addEventListener('scroll', () => {
+    let current = '';
+    const scrollPosition = window.scrollY + 150;
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href').substring(1);
+        if (href === current) {
+            link.classList.add('active');
         }
     });
 });
 
-// Resume List Scrolling
-const resumeLists = document.querySelectorAll('.resume-list');
-resumeLists.forEach(list => {
-    // Optional: Add any scroll-related functionality here
+// ===== Parallax effect for home image (optional) =====
+const homeImg = document.querySelector('.home-img .img-item');
+if (homeImg) {
+    window.addEventListener('mousemove', (e) => {
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+        const moveX = (mouseX - 0.5) * 10;
+        const moveY = (mouseY - 0.5) * 10;
+        
+        homeImg.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
+}
+
+// ===== Animate elements on scroll =====
+const animateOnScroll = () => {
+    const elements = document.querySelectorAll('.services-box, .portfolio-box, .resume-item');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    elements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+};
+
+// Initialize scroll animations after page load
+window.addEventListener('load', () => {
+    setTimeout(animateOnScroll, 500);
 });
+
+// ===== Prevent FOUC (Flash of Unstyled Content) =====
+document.body.style.visibility = 'visible';
+
+// ===== Handle CV Download =====
+const downloadBtn = document.querySelector('.btn-sci .btn');
+if (downloadBtn && downloadBtn.textContent.includes('Download CV')) {
+    downloadBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showNotification('CV download will be available soon. For now, feel free to contact me!', 'info');
+    });
+}
+
+// ===== Log welcome message in console =====
+console.log('%c🚀 Muhammad Abdullah Arif Portfolio Loaded!', 'color: #7cf03d; font-size: 16px; font-weight: bold;');
+console.log('%c💼 Python Developer | Frontend Expert | Cybersecurity Specialist', 'color: #7cf03d; font-size: 12px;');
