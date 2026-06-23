@@ -3,6 +3,7 @@
 
 /* ===== RESET & GLOBAL ===== */
 * {
+    height: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -178,8 +179,8 @@ section.active {
 
 /* Remove extra bottom space from last section */
 section:last-of-type {
-    margin-bottom: 0;
-    padding-bottom: 4rem;
+    margin-bottom: 0 !important;
+    padding-bottom: 4rem !important;
 }
 
 @keyframes fadeSlideUp {
@@ -1362,7 +1363,7 @@ form {
 /* ===== FOOTER - NO EXTRA SPACE ===== */
 .footer {
     text-align: center;
-    padding: 2rem 9%;
+    adding: 2rem 9% !important;
     background: #11171f;
     font-size: 1.4rem;
     border-top: 1px solid rgba(124, 240, 61, 0.2);
@@ -1371,6 +1372,8 @@ form {
     margin: 0;
     position: relative;
     bottom: 0;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 .footer p {
@@ -1386,9 +1389,13 @@ form {
 .resume-container,
 .contact-container,
 .portfolio-container,
-.services-container {
-    margin-bottom: 0;
-    padding-bottom: 0;
+.services-container,
+.resume-box,
+.contact-box,
+.portfolio-box,
+.services-box {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 /* Ensure contact section has no extra bottom space */
