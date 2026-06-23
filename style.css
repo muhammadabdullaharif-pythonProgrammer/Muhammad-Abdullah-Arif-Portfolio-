@@ -3,7 +3,6 @@
 
 /* ===== RESET & GLOBAL ===== */
 * {
-    height: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -636,524 +635,6 @@ section:last-of-type {
     font-weight: 500;
 }
 
-/* ===== BMW CAR LOADING ANIMATION ===== */
-.loader-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #1a1a2e;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
-}
-
-.loader-wrapper.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-.loader-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-}
-
-/* ===== ROAD ===== */
-.road {
-    width: 500px;
-    height: 200px;
-    background: #2d2d44;
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
-    border-bottom: 4px solid #444;
-}
-
-/* ===== CAR ===== */
-.car {
-    position: absolute;
-    bottom: 30px;
-    left: -150px;
-    width: 300px;
-    animation: driveCar 3s ease-in-out forwards;
-}
-
-@keyframes driveCar {
-    0% {
-        left: -150px;
-    }
-    100% {
-        left: 250px;
-    }
-}
-
-/* ===== CAR BODY ===== */
-.car-body {
-    position: relative;
-    width: 100%;
-    height: 70px;
-    background: linear-gradient(180deg, #1a5276, #154360);
-    border-radius: 30px 30px 10px 10px;
-    border-bottom: 3px solid #0e2f44;
-}
-
-/* Windshield */
-.windshield {
-    position: absolute;
-    top: -25px;
-    width: 50px;
-    height: 30px;
-    background: linear-gradient(180deg, #85c1e9, #2e86c1);
-    border-radius: 5px 5px 0 0;
-    border: 2px solid #1a5276;
-}
-
-.windshield.front {
-    right: 30px;
-    transform: rotate(-5deg);
-}
-
-.windshield.back {
-    left: 30px;
-    transform: rotate(5deg);
-}
-
-/* Windows */
-.window {
-    position: absolute;
-    top: -10px;
-    width: 35px;
-    height: 20px;
-    background: #85c1e9;
-    border-radius: 3px 3px 0 0;
-    border: 2px solid #1a5276;
-}
-
-.window.front-window {
-    right: 85px;
-}
-
-.window.back-window {
-    left: 85px;
-}
-
-/* Door Line */
-.door-line {
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 55px;
-    background: #0e2f44;
-}
-
-/* Headlights */
-.headlight {
-    position: absolute;
-    bottom: 5px;
-    width: 15px;
-    height: 12px;
-    background: #f9e79f;
-    border-radius: 50% 50% 0 0;
-    box-shadow: 0 0 20px #f9e79f, 0 0 40px #f9e79f;
-}
-
-.headlight.left {
-    right: -8px;
-    transform: rotate(-10deg);
-}
-
-.headlight.right {
-    left: -8px;
-    transform: rotate(10deg);
-}
-
-/* Tail lights */
-.taillight {
-    position: absolute;
-    bottom: 5px;
-    width: 12px;
-    height: 10px;
-    background: #e74c3c;
-    border-radius: 0 0 50% 50%;
-}
-
-.taillight.left {
-    right: 5px;
-}
-
-.taillight.right {
-    left: 5px;
-}
-
-/* Bumpers */
-.bumper {
-    position: absolute;
-    bottom: -3px;
-    width: 20px;
-    height: 8px;
-    background: #2c3e50;
-    border-radius: 3px;
-}
-
-.bumper.front {
-    right: -10px;
-}
-
-.bumper.back {
-    left: -10px;
-}
-
-/* BMW Logo */
-.bmw-logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 12px;
-    font-weight: 800;
-    color: #f1c40f;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
-}
-
-/* ===== WHEELS ===== */
-.wheel {
-    position: absolute;
-    bottom: -12px;
-    width: 35px;
-    height: 35px;
-    background: #1a1a2e;
-    border-radius: 50%;
-    border: 4px solid #2d2d44;
-    animation: rotateWheel 0.8s linear infinite;
-}
-
-@keyframes rotateWheel {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.wheel.front-wheel {
-    right: 25px;
-}
-
-.wheel.rear-wheel {
-    left: 25px;
-}
-
-.wheel-rim {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 15px;
-    height: 15px;
-    background: #444;
-    border-radius: 50%;
-    border: 3px solid #666;
-}
-
-.wheel-spoke {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 2px;
-    height: 14px;
-    background: #555;
-    transform: translate(-50%, -50%) rotate(calc(45deg * var(--i)));
-    transform-origin: center;
-}
-
-/* ===== EXHAUST ===== */
-.exhaust {
-    position: absolute;
-    bottom: -5px;
-    left: 15px;
-    width: 8px;
-    height: 6px;
-    background: #555;
-    border-radius: 50%;
-    animation: exhaustPuff 0.6s ease-in-out infinite alternate;
-}
-
-@keyframes exhaustPuff {
-    0% {
-        opacity: 0.3;
-        transform: scale(1);
-    }
-    100% {
-        opacity: 0.8;
-        transform: scale(1.3);
-    }
-}
-
-/* ===== SPEED LINES ===== */
-.speed-line {
-    position: absolute;
-    top: 50%;
-    height: 2px;
-    background: rgba(124, 240, 61, 0.3);
-    border-radius: 2px;
-    animation: speedLine 1s linear infinite;
-    animation-delay: calc(0.2s * var(--i));
-}
-
-.speed-line:nth-child(1) { width: 40px; top: 20%; }
-.speed-line:nth-child(2) { width: 60px; top: 35%; }
-.speed-line:nth-child(3) { width: 30px; top: 50%; }
-.speed-line:nth-child(4) { width: 50px; top: 65%; }
-.speed-line:nth-child(5) { width: 45px; top: 80%; }
-
-@keyframes speedLine {
-    0% {
-        right: -50px;
-        opacity: 0;
-    }
-    50% {
-        opacity: 0.8;
-    }
-    100% {
-        right: 100%;
-        opacity: 0;
-    }
-}
-
-/* ===== ROAD LINES ===== */
-.road-line {
-    position: absolute;
-    bottom: 15px;
-    width: 30px;
-    height: 3px;
-    background: #666;
-    border-radius: 2px;
-    animation: roadLineMove 0.6s linear infinite;
-    animation-delay: calc(0.08s * var(--i));
-}
-
-@keyframes roadLineMove {
-    0% {
-        right: -30px;
-    }
-    100% {
-        right: 100%;
-    }
-}
-
-/* ===== LOADING TEXT ===== */
-.loading-text {
-    display: flex;
-    gap: 0.3rem;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #7cf03d;
-    letter-spacing: 2px;
-}
-
-.loading-text span {
-    animation: loadingBounce 1.2s ease-in-out infinite;
-    animation-delay: calc(0.1s * var(--i, 0));
-}
-
-.loading-text span:nth-child(1) { --i: 0; }
-.loading-text span:nth-child(2) { --i: 1; }
-.loading-text span:nth-child(3) { --i: 2; }
-.loading-text span:nth-child(4) { --i: 3; }
-.loading-text span:nth-child(5) { --i: 4; }
-.loading-text span:nth-child(6) { --i: 5; }
-.loading-text span:nth-child(7) { --i: 6; }
-.loading-text span:nth-child(8) { --i: 7; }
-.loading-text span:nth-child(9) { --i: 8; }
-.loading-text span:nth-child(10) { --i: 9; }
-
-@keyframes loadingBounce {
-    0%, 80%, 100% {
-        transform: translateY(0);
-        opacity: 0.6;
-    }
-    40% {
-        transform: translateY(-15px);
-        opacity: 1;
-    }
-}
-
-/* ===== PROGRESS BAR ===== */
-.progress-bar {
-    width: 300px;
-    height: 6px;
-    background: #2d2d44;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-}
-
-.progress-fill {
-    width: 0%;
-    height: 100%;
-    background: linear-gradient(90deg, #7cf03d, #f1c40f);
-    border-radius: 10px;
-    transition: width 0.3s ease;
-    animation: progressFill 3s ease-in-out forwards;
-}
-
-@keyframes progressFill {
-    0% { width: 0%; }
-    100% { width: 100%; }
-}
-
-.progress-text {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #aaa;
-    letter-spacing: 1px;
-}
-
-/* ===== RESPONSIVE LOADER ===== */
-@media screen and (max-width: 768px) {
-    .road {
-        width: 320px;
-        height: 150px;
-    }
-    
-    .car {
-        width: 200px;
-    }
-    
-    .car-body {
-        height: 50px;
-    }
-    
-    .windshield {
-        width: 35px;
-        height: 22px;
-        top: -18px;
-    }
-    
-    .windshield.front { right: 20px; }
-    .windshield.back { left: 20px; }
-    
-    .window {
-        width: 25px;
-        height: 15px;
-        top: -8px;
-    }
-    
-    .window.front-window { right: 58px; }
-    .window.back-window { left: 58px; }
-    
-    .wheel {
-        width: 25px;
-        height: 25px;
-        bottom: -8px;
-    }
-    
-    .wheel.front-wheel { right: 15px; }
-    .wheel.rear-wheel { left: 15px; }
-    
-    .wheel-rim {
-        width: 10px;
-        height: 10px;
-    }
-    
-    .wheel-spoke {
-        height: 10px;
-    }
-    
-    .headlight {
-        width: 10px;
-        height: 8px;
-    }
-    
-    .taillight {
-        width: 8px;
-        height: 7px;
-    }
-    
-    .bmw-logo {
-        font-size: 8px;
-    }
-    
-    .door-line {
-        height: 35px;
-    }
-    
-    .bumper {
-        width: 15px;
-        height: 6px;
-    }
-    
-    .loading-text {
-        font-size: 1.5rem;
-    }
-    
-    .progress-bar {
-        width: 220px;
-    }
-    
-    .road-line {
-        width: 20px;
-        height: 2px;
-    }
-}
-
-@media screen and (max-width: 400px) {
-    .road {
-        width: 250px;
-        height: 120px;
-    }
-    
-    .car {
-        width: 160px;
-    }
-    
-    .car-body {
-        height: 40px;
-    }
-    
-    .windshield {
-        width: 28px;
-        height: 18px;
-        top: -15px;
-    }
-    
-    .window {
-        width: 20px;
-        height: 12px;
-        top: -6px;
-    }
-    
-    .window.front-window { right: 45px; }
-    .window.back-window { left: 45px; }
-    
-    .wheel {
-        width: 20px;
-        height: 20px;
-        bottom: -6px;
-    }
-    
-    .wheel.front-wheel { right: 12px; }
-    .wheel.rear-wheel { left: 12px; }
-    
-    .bmw-logo {
-        font-size: 6px;
-    }
-    
-    .loading-text {
-        font-size: 1.2rem;
-    }
-    
-    .progress-bar {
-        width: 180px;
-    }
-}
-
 /* ===== ABOUT ME SECTION ===== */
 .resume-detail.about .resume-list {
     display: grid;
@@ -1363,7 +844,7 @@ form {
 /* ===== FOOTER - NO EXTRA SPACE ===== */
 .footer {
     text-align: center;
-    adding: 2rem 9% !important;
+    padding: 2rem 9%;
     background: #11171f;
     font-size: 1.4rem;
     border-top: 1px solid rgba(124, 240, 61, 0.2);
@@ -1372,8 +853,6 @@ form {
     margin: 0;
     position: relative;
     bottom: 0;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
 }
 
 .footer p {
@@ -1389,19 +868,204 @@ form {
 .resume-container,
 .contact-container,
 .portfolio-container,
-.services-container,
-.resume-box,
-.contact-box,
-.portfolio-box,
-.services-box {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
+.services-container {
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 /* Ensure contact section has no extra bottom space */
 .contact {
     padding-bottom: 4rem;
     margin-bottom: 0;
+}
+
+/* ============================================================
+            FAST LOADING CIRCLE ANIMATION
+============================================================ */
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loader-wrapper.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+/* ===== SPINNING CIRCLE ===== */
+.loader-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 4px solid rgba(124, 240, 61, 0.1);
+    border-top: 4px solid var(--main-color);
+    border-right: 4px solid var(--main-color);
+    animation: spinCircle 0.8s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+    position: relative;
+}
+
+.loader-circle::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border-radius: 50%;
+    border: 3px solid rgba(124, 240, 61, 0.15);
+    border-bottom: 3px solid var(--main-color);
+    animation: spinCircle 1.2s cubic-bezier(0.6, 0, 0.4, 1) infinite reverse;
+}
+
+.loader-circle::after {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(124, 240, 61, 0.2);
+    border-left: 2px solid var(--main-color);
+    animation: spinCircle 0.6s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+}
+
+@keyframes spinCircle {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== PULSING DOTS ===== */
+.loader-dots {
+    display: flex;
+    gap: 1rem;
+}
+
+.loader-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--main-color);
+    animation: pulseDot 1.4s ease-in-out infinite;
+}
+
+.loader-dots span:nth-child(1) { animation-delay: 0s; }
+.loader-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loader-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes pulseDot {
+    0%, 80%, 100% {
+        transform: scale(0.6);
+        opacity: 0.3;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ===== LOADING TEXT ===== */
+.loader-text {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--main-color);
+    letter-spacing: 4px;
+    animation: textPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* ===== PROGRESS BAR ===== */
+.loader-progress {
+    width: 250px;
+    height: 4px;
+    background: rgba(124, 240, 61, 0.15);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.loader-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--main-color), #f1c40f);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.loader-progress-text {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 1px;
+}
+
+/* ===== RESPONSIVE LOADER ===== */
+@media screen and (max-width: 768px) {
+    .loader-circle {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .loader-circle::before {
+        top: 6px;
+        left: 6px;
+        right: 6px;
+        bottom: 6px;
+    }
+    
+    .loader-circle::after {
+        top: 14px;
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+    }
+    
+    .loader-text {
+        font-size: 1.4rem;
+    }
+    
+    .loader-progress {
+        width: 200px;
+    }
+    
+    .loader-dots span {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .loader-circle {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .loader-text {
+        font-size: 1.2rem;
+    }
+    
+    .loader-progress {
+        width: 160px;
+    }
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
