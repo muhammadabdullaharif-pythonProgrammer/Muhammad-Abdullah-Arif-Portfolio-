@@ -82,23 +82,27 @@ navLinks.forEach(link => {
 
 // ===== Resume Tab Switching =====
 if (resumeBtns.length > 0) {
-    resumeBtns.forEach(btn => {
+    resumeBtns.forEach((btn, index) => {
         btn.addEventListener('click', () => {
             // Remove active class from all buttons
             resumeBtns.forEach(btn => btn.classList.remove('active'));
             btn.classList.add('active');
             
-            // Get tab identifier
-            const tabId = btn.getAttribute('data-tab');
+            // Remove active class from all details
+            resumeDetails.forEach(detail => detail.classList.remove('active'));
             
-            // Remove active class from all details and add to selected
-            resumeDetails.forEach(detail => {
-                detail.classList.remove('active');
-                if (detail.id === `${tabId}-detail` || 
-                    (detail.classList.contains(tabId) && !detail.id)) {
-                    detail.classList.add('active');
-                }
-            });
+            // Activate corresponding detail based on button text
+            const btnText = btn.textContent.toLowerCase().trim();
+            
+            if (btnText.includes('experience')) {
+                document.querySelector('.resume-detail.experience')?.classList.add('active');
+            } else if (btnText.includes('education')) {
+                document.querySelector('.resume-detail.education')?.classList.add('active');
+            } else if (btnText.includes('skill')) {
+                document.querySelector('.resume-detail.skills')?.classList.add('active');
+            } else if (btnText.includes('about')) {
+                document.querySelector('.resume-detail.about')?.classList.add('active');
+            }
         });
     });
 }
@@ -121,15 +125,19 @@ window.addEventListener('load', () => {
         const firstDetail = document.querySelector('.resume-detail.experience');
         if (firstDetail) firstDetail.classList.add('active');
     }
+    
+    // Update resume details based on active button
+    const activeBtn = document.querySelector('.resume-btn.active');
+    if (activeBtn) {
+        activeBtn.click();
+    }
 });
 
 window.addEventListener('hashchange', handleNavigation);
 
 // ===== Dynamic Headline Animation Enhancement =====
-// Ensure dynamic headline spans are properly animated
 const dynamicSpans = document.querySelectorAll('.dynamic-headline span');
 if (dynamicSpans.length > 0) {
-    // Reset animation by reflow (fix for any animation issues)
     dynamicSpans.forEach(span => {
         span.style.animation = 'none';
         span.offsetHeight; // trigger reflow
@@ -143,7 +151,6 @@ if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        // Get form fields
         const inputs = contactForm.querySelectorAll('input, textarea');
         let isValid = true;
         let formData = {};
@@ -165,15 +172,13 @@ if (contactForm) {
         });
         
         if (isValid) {
-            // Show success message
-            showNotification('Message sent successfully! I will get back to you soon.', 'success');
+            showNotification('✅ Message sent successfully! I will get back to you soon.', 'success');
             contactForm.reset();
         } else {
-            showNotification('Please fill in all required fields.', 'error');
+            showNotification('⚠️ Please fill in all required fields.', 'error');
         }
     });
     
-    // Remove error styling on input
     const formInputs = contactForm.querySelectorAll('input, textarea');
     formInputs.forEach(input => {
         input.addEventListener('input', () => {
@@ -185,7 +190,6 @@ if (contactForm) {
 
 // ===== Notification System =====
 function showNotification(message, type = 'info') {
-    // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -196,7 +200,6 @@ function showNotification(message, type = 'info') {
         <button class="notification-close">&times;</button>
     `;
     
-    // Style the notification
     notification.style.cssText = `
         position: fixed;
         bottom: 20px;
@@ -229,7 +232,6 @@ function showNotification(message, type = 'info') {
     
     document.body.appendChild(notification);
     
-    // Auto remove after 5 seconds
     setTimeout(() => {
         if (notification && notification.parentNode) {
             notification.style.animation = 'slideOutRight 0.3s ease';
@@ -239,7 +241,6 @@ function showNotification(message, type = 'info') {
         }
     }, 5000);
     
-    // Close button functionality
     closeBtn.addEventListener('click', () => {
         notification.style.animation = 'slideOutRight 0.3s ease';
         setTimeout(() => {
@@ -275,7 +276,7 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ===== Scroll to top button (optional enhancement) =====
+// ===== Scroll to top button =====
 const createScrollTopButton = () => {
     const scrollBtn = document.createElement('button');
     scrollBtn.innerHTML = '<i class="bx bx-up-arrow-alt"></i>';
@@ -287,8 +288,8 @@ const createScrollTopButton = () => {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background: var(--main-color);
-        color: var(--bg-color);
+        background: var(--main-color, #7cf03d);
+        color: var(--bg-color, #1f242d);
         border: none;
         cursor: pointer;
         font-size: 24px;
@@ -332,7 +333,6 @@ const createScrollTopButton = () => {
     });
 };
 
-// Initialize scroll to top button after a short delay
 setTimeout(createScrollTopButton, 1000);
 
 // ===== Active nav link update on scroll =====
@@ -358,7 +358,7 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// ===== Parallax effect for home image (optional) =====
+// ===== Parallax effect for home image =====
 const homeImg = document.querySelector('.home-img .img-item');
 if (homeImg) {
     window.addEventListener('mousemove', (e) => {
@@ -393,7 +393,6 @@ const animateOnScroll = () => {
     });
 };
 
-// Initialize scroll animations after page load
 window.addEventListener('load', () => {
     setTimeout(animateOnScroll, 500);
 });
@@ -406,10 +405,11 @@ const downloadBtn = document.querySelector('.btn-sci .btn');
 if (downloadBtn && downloadBtn.textContent.includes('Download CV')) {
     downloadBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        showNotification('CV download will be available soon. For now, feel free to contact me!', 'info');
+        showNotification('📄 CV download will be available soon. Feel free to contact me!', 'info');
     });
 }
 
 // ===== Log welcome message in console =====
-console.log('%c🚀 Muhammad Abdullah Arif Portfolio Loaded!', 'color: #7cf03d; font-size: 16px; font-weight: bold;');
-console.log('%c💼 Python Developer | Frontend Expert | Cybersecurity Specialist', 'color: #7cf03d; font-size: 12px;');
+console.log('%c🚀 Muhammad Abdullah Arif - CS Teacher & Python Developer', 'color: #7cf03d; font-size: 16px; font-weight: bold;');
+console.log('%c💼 Computer Science Teacher | Python Developer', 'color: #7cf03d; font-size: 12px;');
+console.log('%c📚 Teaching with Passion • Coding with Purpose', 'color: #7cf03d; font-size: 12px;');
