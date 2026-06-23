@@ -29,7 +29,6 @@ function handleNavigation() {
     const hash = window.location.hash || '#home';
     const targetId = hash.substring(1);
     
-    // Update active section
     sections.forEach(section => {
         if (section.id === targetId || (targetId === '' && section.id === 'home')) {
             section.classList.add('active');
@@ -38,7 +37,6 @@ function handleNavigation() {
         }
     });
     
-    // Update active nav link
     navLinks.forEach(link => {
         const linkHash = link.getAttribute('href');
         if (linkHash === hash || (hash === '#home' && linkHash === '#home')) {
@@ -48,10 +46,8 @@ function handleNavigation() {
         }
     });
     
-    // Update header active state
     if (header) header.classList.add('active');
     
-    // Hide bars box after animation
     if (barsBox && barsBox.classList.contains('active')) {
         setTimeout(() => {
             barsBox.classList.remove('active');
@@ -67,11 +63,9 @@ navLinks.forEach(link => {
         const targetSection = document.getElementById(targetId);
         
         if (targetSection) {
-            // Update URL hash without jumping
             history.pushState(null, null, `#${targetId}`);
             handleNavigation();
             
-            // Smooth scroll to section
             targetSection.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -82,65 +76,48 @@ navLinks.forEach(link => {
 
 // ===== Resume Tab Switching =====
 if (resumeBtns.length > 0) {
-    resumeBtns.forEach((btn, index) => {
+    resumeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active class from all buttons
-            resumeBtns.forEach(btn => btn.classList.remove('active'));
+            resumeBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             
-            // Remove active class from all details
-            resumeDetails.forEach(detail => detail.classList.remove('active'));
+            const tabId = btn.getAttribute('data-tab');
             
-            // Activate corresponding detail based on button text
-            const btnText = btn.textContent.toLowerCase().trim();
-            
-            if (btnText.includes('experience')) {
-                document.querySelector('.resume-detail.experience')?.classList.add('active');
-            } else if (btnText.includes('education')) {
-                document.querySelector('.resume-detail.education')?.classList.add('active');
-            } else if (btnText.includes('skill')) {
-                document.querySelector('.resume-detail.skills')?.classList.add('active');
-            } else if (btnText.includes('about')) {
-                document.querySelector('.resume-detail.about')?.classList.add('active');
-            }
+            resumeDetails.forEach(detail => {
+                detail.classList.remove('active');
+                if (detail.id === `${tabId}-detail`) {
+                    detail.classList.add('active');
+                }
+            });
         });
     });
 }
 
 // ===== Handle initial load and hash changes =====
 window.addEventListener('load', () => {
-    // Set default active states if no hash
     if (!window.location.hash || window.location.hash === '') {
         window.location.hash = '#home';
     }
     handleNavigation();
     
-    // Ensure resume first tab is active by default
     if (resumeBtns.length > 0 && !document.querySelector('.resume-btn.active')) {
         resumeBtns[0].classList.add('active');
     }
     
-    // Set default resume detail visibility
     if (resumeDetails.length > 0 && !document.querySelector('.resume-detail.active')) {
         const firstDetail = document.querySelector('.resume-detail.experience');
         if (firstDetail) firstDetail.classList.add('active');
-    }
-    
-    // Update resume details based on active button
-    const activeBtn = document.querySelector('.resume-btn.active');
-    if (activeBtn) {
-        activeBtn.click();
     }
 });
 
 window.addEventListener('hashchange', handleNavigation);
 
-// ===== Dynamic Headline Animation Enhancement =====
+// ===== Dynamic Headline Animation =====
 const dynamicSpans = document.querySelectorAll('.dynamic-headline span');
 if (dynamicSpans.length > 0) {
     dynamicSpans.forEach(span => {
         span.style.animation = 'none';
-        span.offsetHeight; // trigger reflow
+        span.offsetHeight;
         span.style.animation = null;
     });
 }
@@ -153,7 +130,6 @@ if (contactForm) {
         
         const inputs = contactForm.querySelectorAll('input, textarea');
         let isValid = true;
-        let formData = {};
         
         inputs.forEach(input => {
             if (input.hasAttribute('required') && !input.value.trim()) {
@@ -163,11 +139,6 @@ if (contactForm) {
             } else {
                 input.style.borderColor = '';
                 input.style.boxShadow = '';
-                if (input.name) {
-                    formData[input.name] = input.value;
-                } else if (input.placeholder) {
-                    formData[input.placeholder] = input.value;
-                }
             }
         });
         
@@ -179,8 +150,7 @@ if (contactForm) {
         }
     });
     
-    const formInputs = contactForm.querySelectorAll('input, textarea');
-    formInputs.forEach(input => {
+    contactForm.querySelectorAll('input, textarea').forEach(input => {
         input.addEventListener('input', () => {
             input.style.borderColor = '';
             input.style.boxShadow = '';
@@ -191,7 +161,6 @@ if (contactForm) {
 // ===== Notification System =====
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
     notification.innerHTML = `
         <div class="notification-content">
             <i class="bx ${type === 'success' ? 'bx-check-circle' : type === 'error' ? 'bx-error-circle' : 'bx-info-circle'}"></i>
@@ -249,38 +218,24 @@ function showNotification(message, type = 'info') {
     });
 }
 
-// Add animation keyframes for notifications
-const style = document.createElement('style');
-style.textContent = `
+// ===== Add notification animations =====
+const styleSheet = document.createElement('style');
+styleSheet.textContent = `
     @keyframes slideInRight {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
     }
-    
     @keyframes slideOutRight {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(styleSheet);
 
 // ===== Scroll to top button =====
 const createScrollTopButton = () => {
     const scrollBtn = document.createElement('button');
     scrollBtn.innerHTML = '<i class="bx bx-up-arrow-alt"></i>';
-    scrollBtn.className = 'scroll-top-btn';
     scrollBtn.style.cssText = `
         position: fixed;
         bottom: 30px;
@@ -288,8 +243,8 @@ const createScrollTopButton = () => {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background: var(--main-color, #7cf03d);
-        color: var(--bg-color, #1f242d);
+        background: #7cf03d;
+        color: #1f242d;
         border: none;
         cursor: pointer;
         font-size: 24px;
@@ -316,20 +271,7 @@ const createScrollTopButton = () => {
     });
     
     scrollBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-    
-    scrollBtn.addEventListener('mouseenter', () => {
-        scrollBtn.style.transform = 'translateY(-5px)';
-        scrollBtn.style.boxShadow = '0 6px 20px rgba(124, 240, 61, 0.5)';
-    });
-    
-    scrollBtn.addEventListener('mouseleave', () => {
-        scrollBtn.style.transform = 'translateY(0)';
-        scrollBtn.style.boxShadow = '0 4px 12px rgba(124, 240, 61, 0.3)';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 };
 
@@ -366,7 +308,6 @@ if (homeImg) {
         const mouseY = e.clientY / window.innerHeight;
         const moveX = (mouseX - 0.5) * 10;
         const moveY = (mouseY - 0.5) * 10;
-        
         homeImg.style.transform = `translate(${moveX}px, ${moveY}px)`;
     });
 }
@@ -397,10 +338,10 @@ window.addEventListener('load', () => {
     setTimeout(animateOnScroll, 500);
 });
 
-// ===== Prevent FOUC (Flash of Unstyled Content) =====
+// ===== Prevent FOUC =====
 document.body.style.visibility = 'visible';
 
-// ===== Handle CV Download =====
+// ===== CV Download =====
 const downloadBtn = document.querySelector('.btn-sci .btn');
 if (downloadBtn && downloadBtn.textContent.includes('Download CV')) {
     downloadBtn.addEventListener('click', (e) => {
@@ -409,7 +350,7 @@ if (downloadBtn && downloadBtn.textContent.includes('Download CV')) {
     });
 }
 
-// ===== Log welcome message in console =====
+// ===== Console Message =====
 console.log('%c🚀 Muhammad Abdullah Arif - CS Teacher & Python Developer', 'color: #7cf03d; font-size: 16px; font-weight: bold;');
 console.log('%c💼 Computer Science Teacher | Python Developer', 'color: #7cf03d; font-size: 12px;');
 console.log('%c📚 Teaching with Passion • Coding with Purpose', 'color: #7cf03d; font-size: 12px;');
