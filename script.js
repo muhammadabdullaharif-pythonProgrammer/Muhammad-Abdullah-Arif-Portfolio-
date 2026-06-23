@@ -7,7 +7,8 @@ const sections = document.querySelectorAll('section');
 const barsBox = document.querySelector('.bars-box');
 const resumeBtns = document.querySelectorAll('.resume-btn');
 const resumeDetails = document.querySelectorAll('.resume-detail');
-// ===== BMW LOADING ANIMATION =====
+
+// ===== FAST LOADING CIRCLE ANIMATION =====
 window.addEventListener('load', function() {
     const loader = document.getElementById('loaderWrapper');
     const progressFill = document.getElementById('progressFill');
@@ -15,33 +16,32 @@ window.addEventListener('load', function() {
     
     let progress = 0;
     const interval = setInterval(() => {
-        progress += Math.random() * 10;
+        progress += Math.random() * 8 + 2;
         if (progress >= 100) {
             progress = 100;
             clearInterval(interval);
             
-            // Hide loader after completion
             setTimeout(() => {
                 loader.classList.add('hidden');
-                // Show content
                 document.body.style.overflow = 'auto';
-            }, 500);
+            }, 400);
         }
         progressFill.style.width = progress + '%';
         progressText.textContent = Math.floor(progress) + '%';
-    }, 150);
+    }, 120);
     
-    // Hide loader after max 4 seconds (safety fallback)
+    // Safety fallback
     setTimeout(() => {
         if (!loader.classList.contains('hidden')) {
             loader.classList.add('hidden');
             document.body.style.overflow = 'auto';
         }
-    }, 4000);
+    }, 3500);
 });
 
 // Prevent scrolling during loading
 document.body.style.overflow = 'hidden';
+
 // ===== Mobile Menu Toggle =====
 if (menuIcon) {
     menuIcon.addEventListener('click', () => {
