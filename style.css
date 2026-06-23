@@ -212,12 +212,12 @@ section.active {
     -webkit-text-stroke: 0.1rem var(--main-color);
     font-weight: 600;
     animation: display-text 16s linear infinite;
-    animation-delay: calc(-4s * var(--i));
+    animation-delay: calc(-8s * var(--i));
 }
 
 @keyframes display-text {
-    0%, 20%, 100% { display: inline-block; opacity: 1; }
-    25%, 95% { display: none; opacity: 0; }
+    0%, 40%, 100% { display: inline-block; opacity: 1; }
+    45%, 95% { display: none; opacity: 0; }
 }
 
 .dynamic-headline span::before {
@@ -228,7 +228,7 @@ section.active {
     color: var(--main-color);
     white-space: nowrap;
     overflow: hidden;
-    animation: fill-text 4s linear infinite;
+    animation: fill-text 8s linear infinite;
 }
 
 @keyframes fill-text {
@@ -391,7 +391,7 @@ section.active {
     color: #ddd;
 }
 
-/* ===== RESUME SECTION - COMPLETELY FIXED ===== */
+/* ===== RESUME SECTION ===== */
 .resume-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -480,7 +480,7 @@ section.active {
     border-radius: 10px;
 }
 
-/* ===== RESUME ITEM - FIXED TEXT DISPLAY ===== */
+/* ===== RESUME ITEM ===== */
 .resume-item {
     background: var(--second-bg-color);
     border-radius: 1.6rem;
@@ -521,7 +521,6 @@ section.active {
     display: inline-block;
 }
 
-/* CRITICAL FIX: Experience description text */
 .resume-item p {
     font-size: 1.45rem;
     color: #e0e0e0;
@@ -534,7 +533,6 @@ section.active {
     word-break: break-word;
 }
 
-/* Remove any conflicting margins */
 .resume-item p:last-child {
     margin-bottom: 0;
 }
