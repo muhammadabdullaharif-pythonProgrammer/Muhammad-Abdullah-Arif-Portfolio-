@@ -27,15 +27,21 @@ html {
     font-size: 62.5%;
     scroll-behavior: smooth;
     height: 100%;
+    overflow-x: hidden;
 }
 
 body {
+    margin: 0;
+    padding: 0;
     color: var(--white-color);
     background: var(--bg-color);
     overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
+}
+
+/* Hide completely empty sections */
+section:empty {
+    display: none;
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -160,16 +166,18 @@ nav a.active::after {
 /* ===== SECTIONS ===== */
 section {
     width: 100%;
-    min-height: 100vh;
-    padding: 10rem 9% 4rem;
+    min-height: auto;
+    height: auto;
+    padding: 8rem 9% 3rem;
     visibility: hidden;
     opacity: 0;
-    overflow-y: auto;
+    overflow: hidden;
     flex-shrink: 0;
-    display: block;
+    display: none;
 }
 
 section.active {
+    display: block;
     visibility: visible;
     opacity: 1;
     animation: fadeSlideUp 0.8s ease forwards;
@@ -196,7 +204,7 @@ section:last-of-type {
     align-items: center;
     gap: 5rem;
     flex-wrap: wrap;
-    min-height: 80vh;
+    min-height: auto;
     padding-top: 2rem;
 }
 
@@ -832,10 +840,7 @@ form {
     font-size: 1.3rem;
     border-top: 1px solid rgba(124, 240, 61, 0.2);
     width: 100%;
-    flex-shrink: 0;
-    margin-top: auto;
-    position: relative;
-    bottom: 0;
+    margin-top: 2rem;
 }
 
 .footer p {
