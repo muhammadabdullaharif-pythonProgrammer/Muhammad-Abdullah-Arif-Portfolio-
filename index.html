@@ -1,624 +1,428 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Meta Tags -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Muhammad Abdullah Arif - Computer Science Teacher & Python Developer. Full-Stack Web Developer | AI & Machine Learning | Django & React Expert">
-    <meta name="keywords" content="Python Developer, Django, React, Computer Science Teacher, Full-Stack Development, AI Chatbot, Pakistan">
-    <meta name="author" content="Muhammad Abdullah Arif">
-    
-    <!-- Title -->
-    <title>Muhammad Abdullah Arif | CS Teacher & Python Developer | Portfolio</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" href="logo.jpeg" type="image/jpeg">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Boxicons CSS -->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Abdullah Arif · CS Teacher & Python Dev</title>
+  <!-- Bootstrap 5 + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: #0b1a2e;
+      transition: background 0.2s;
+    }
+    body.dark {
+      background: #0b1a2e;
+      color: #eef2f6;
+    }
+    body.dark .card, body.dark .bg-white, body.dark .list-group-item {
+      background: #162b3c !important;
+      color: #eef2f6 !important;
+      border-color: #2a4055 !important;
+    }
+    body.dark .text-muted { color: #a0b8cc !important; }
+    body.dark .navbar { background: #0f1f2e !important; }
+    body.dark .btn-outline-dark { color: #eef2f6; border-color: #4a6a80; }
+    body.dark .btn-outline-dark:hover { background: #2a4055; }
+    body.dark .footer { background: #09131e; }
+    body.dark .section-alt { background: #0f1f2e !important; }
+    /* loader */
+    #loaderWrapper {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #0b1a2e;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.6s ease;
+    }
+    #loaderWrapper.hidden { opacity: 0; pointer-events: none; }
+    .loader-ring {
+      width: 70px; height: 70px;
+      border: 5px solid rgba(255,255,255,0.08);
+      border-top-color: #7cf03d;
+      border-radius: 50%;
+      animation: spin 0.9s cubic-bezier(0.6,0,0.4,1) infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader-text { color: #7cf03d; margin-top: 1.5rem; font-weight: 600; letter-spacing: 2px; }
+    .loader-progress { width: 200px; height: 4px; background: #1f3345; border-radius: 4px; overflow: hidden; margin-top: 1rem; }
+    .loader-progress-fill { width: 0%; height: 100%; background: #7cf03d; transition: width 0.2s; }
+    .loader-progress-text { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 0.3rem; }
+    .loader-dots { display: flex; gap: 0.8rem; margin-top: 1.2rem; }
+    .loader-dots span { width: 12px; height: 12px; border-radius: 50%; background: #7cf03d; animation: pulseDot 1.4s ease-in-out infinite; }
+    .loader-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loader-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes pulseDot { 0%,80%,100% { transform: scale(0.6); opacity: 0.3; } 40% { transform: scale(1); opacity: 1; } }
 
+    /* utilities */
+    .section-title { font-weight: 700; letter-spacing: -0.02em; }
+    .text-accent { color: #7cf03d; }
+    .bg-soft-accent { background: rgba(124,240,61,0.08); }
+    .btn-accent {
+      background: #7cf03d; border: none; color: #0b1a2e;
+      font-weight: 600; transition: all 0.2s;
+    }
+    .btn-accent:hover { background: #5cb85c; color: #0b1a2e; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(124,240,61,0.3); }
+    .btn-outline-accent {
+      border: 2px solid #7cf03d; color: #7cf03d; background: transparent;
+      font-weight: 600;
+    }
+    .btn-outline-accent:hover { background: #7cf03d; color: #0b1a2e; }
+    .card-hover {
+      transition: all 0.25s ease;
+      border: 1px solid rgba(124,240,61,0.15);
+    }
+    .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -12px rgba(0,0,0,0.2); border-color: #7cf03d; }
+    .badge-tech { background: rgba(124,240,61,0.12); color: #7cf03d; padding: 6px 14px; border-radius: 40px; font-weight: 500; }
+    .profile-ring {
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .profile-ring::before {
+      content: ''; position: absolute; inset: -6px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, transparent, #7cf03d, transparent);
+      animation: spin 6s linear infinite;
+    }
+    .profile-ring img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; position: relative; z-index: 1; background: #162b3c; }
+    .footer { background: #0f1a26; color: #9ab0c4; padding: 2rem 0; border-top: 1px solid #1f3345; }
+    #scrollTop {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: #7cf03d; border: none; color: #0b1a2e;
+      font-size: 1.6rem; display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: all 0.25s;
+      box-shadow: 0 6px 20px rgba(124,240,61,0.3); z-index: 999;
+    }
+    #scrollTop.visible { opacity: 1; visibility: visible; }
+    .toast-container { position: fixed; bottom: 80px; right: 20px; z-index: 9999; }
+    .section-alt { background: #f1f5f9; }
+    .resume-tab-btn {
+      background: transparent; border: 1px solid #2a4055; color: #eef2f6;
+      padding: 10px 18px; border-radius: 40px; font-weight: 500; transition: 0.2s;
+    }
+    .resume-tab-btn.active, .resume-tab-btn:hover {
+      background: #7cf03d; color: #0b1a2e; border-color: #7cf03d;
+    }
+    .resume-content-pane { display: none; }
+    .resume-content-pane.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .skill-pill {
+      background: rgba(124,240,61,0.08); border: 1px solid rgba(124,240,61,0.2);
+      padding: 8px 18px; border-radius: 40px; display: inline-flex; align-items: center; gap: 8px;
+      font-weight: 500;
+    }
+    .skill-pill i { font-size: 1.2rem; color: #7cf03d; }
+    @media (max-width: 768px) { .profile-ring { width: 160px; height: 160px; } }
+  </style>
+</head>
 <body>
 
-    <!-- ============================================================
-                    FAST LOADING CIRCLE ANIMATION
-    ============================================================ -->
-    <div class="loader-wrapper" id="loaderWrapper">
-        <div class="loader-container">
-            <!-- Spinning Circle -->
-            <div class="loader-circle"></div>
-            
-            <!-- Loading Text -->
-            <div class="loader-text">LOADING</div>
-            
-            <!-- Progress Bar -->
-            <div class="loader-progress">
-                <div class="loader-progress-fill" id="progressFill"></div>
-            </div>
-            <div class="loader-progress-text" id="progressText">0%</div>
-            
-            <!-- Pulsing Dots -->
-            <div class="loader-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
+<!-- LOADER -->
+<div id="loaderWrapper">
+  <div class="loader-ring"></div>
+  <div class="loader-text">LOADING</div>
+  <div class="loader-progress"><div class="loader-progress-fill" id="progressFill"></div></div>
+  <div class="loader-progress-text" id="progressText">0%</div>
+  <div class="loader-dots"><span></span><span></span><span></span></div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background:#0f1a26; backdrop-filter:blur(10px); border-bottom:1px solid #1f3345;">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-3" href="#" style="color:#7cf03d;">MAA</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-2">
+        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+        <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
+        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item">
+          <button class="btn btn-outline-light btn-sm rounded-pill px-3" id="themeToggle"><i class="bi bi-moon-fill"></i></button>
+        </li>
+      </ul>
     </div>
+  </div>
+</nav>
 
-    <!-- ============================================================
-                            HEADER SECTION
-    ============================================================ -->
-    <header class="active">
-        <a href="#" class="logo">MAA</a>
-        <i class="bx bx-menu" id="menu-icon"></i>
-        <nav>
-            <a href="#home" class="nav-link active">Home</a>
-            <a href="#services" class="nav-link">Certifications</a>
-            <a href="#resume" class="nav-link">Resume</a>
-            <a href="#portfolio" class="nav-link">Portfolio</a>
-            <a href="#contact" class="nav-link">Contact</a>
-        </nav>
-    </header>
-
-    <!-- ============================================================
-                        ANIMATED BARS BACKGROUND
-    ============================================================ -->
-    <div class="bars-box active">
-        <div class="bar" style="--i:6"></div>
-        <div class="bar" style="--i:5"></div>
-        <div class="bar" style="--i:4"></div>
-        <div class="bar" style="--i:3"></div>
-        <div class="bar" style="--i:2"></div>
-        <div class="bar" style="--i:1"></div>
+<!-- HOME -->
+<section id="home" class="py-5" style="min-height:90vh; display:flex; align-items:center;">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7 order-lg-1 order-2">
+        <h1 class="display-4 fw-bold" style="line-height:1.1;">Muhammad Abdullah Arif</h1>
+        <h2 class="h4 fw-normal mt-2">I'm a <span class="text-accent">Computer Science Teacher</span> &amp; <span class="text-accent">Python Developer</span></h2>
+        <p class="lead mt-3 text-muted">
+          Computer Science teacher and Python developer who builds full-stack web applications and AI-powered tools alongside teaching. Hands-on experience with Python, Django, React JS, and MySQL across real-world projects – including AI chatbots, automated MCQ generation, and a student learning management system.
+        </p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="Muhammad_Abdullah_Arif_Resume.pdf" class="btn btn-accent px-5 py-3 rounded-pill"><i class="bi bi-download me-2"></i>Download CV</a>
+          <div class="d-flex gap-2">
+            <a href="https://github.com/muhammadabdullaharif-pythonProgrammer" class="btn btn-outline-dark rounded-circle p-3" style="width:52px;height:52px;display:inline-flex;align-items:center;justify-content:center;"><i class="bi bi-github fs-5"></i></a>
+            <a href="https://www.linkedin.com/in/muhammad-abdullah-arif-a0a0bb362/" class="btn btn-outline-dark rounded-circle p-3" style="width:52px;height:52px;display:inline-flex;align-items:center;justify-content:center;"><i class="bi bi-linkedin fs-5"></i></a>
+            <a href="https://www.upwork.com/freelancers/~0137628100a8547682" class="btn btn-outline-dark rounded-circle p-3" style="width:52px;height:52px;display:inline-flex;align-items:center;justify-content:center;"><i class="bi bi-upwork fs-5"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 order-lg-2 order-1 text-center">
+        <div class="profile-ring mx-auto">
+          <img src="home.jpeg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23162b3c'/%3E%3Ccircle cx='50' cy='40' r='22' fill='%237cf03d' opacity='0.3'/%3E%3Cpath d='M30 75 Q50 60 70 75' stroke='%237cf03d' stroke-width='6' fill='none' opacity='0.5'/%3E%3C/svg%3E" alt="Profile" />
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <!-- ============================================================
-                            HOME SECTION
-    ============================================================ -->
-    <section class="home active" id="home">
-        <div class="home-detail">
-            <h1>Muhammad Abdullah Arif</h1>
-            
-            <!-- Dynamic Headline -->
-            <h2 class="dynamic-headline">
-                I'm a 
-                <span style="--i:1;" data-text="Computer Science Teacher">Computer Science Teacher</span>
-                <span style="--i:2;" data-text="Python Developer">Python Developer</span>
-            </h2>
-            
-            <!-- Description -->
-            <p class="intro-text">
-                Computer Science teacher and Python developer who builds full-stack web applications 
-                and AI-powered tools alongside teaching. Hands-on experience with Python, Django, React JS, 
-                and MySQL across real-world projects – including AI chatbots, automated MCQ generation, 
-                and a student learning management system.
-            </p>
-            
-            <!-- Call to Action -->
-            <div class="btn-sci">
-                <a href="Muhammad_Abdullah_Arif_Resume.pdf" class="btn btn-primary" title="Download Resume">Download CV</a>
-                <div class="sci">
-                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer" class="social-link" title="GitHub" target="_blank">
-                        <i class="bx bxl-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/muhammad-abdullah-arif-a0a0bb362/" class="social-link" title="LinkedIn" target="_blank">
-                        <i class="bx bxl-linkedin"></i>
-                    </a>
-                    <a href="https://www.upwork.com/freelancers/~0137628100a8547682" class="social-link" title="Upwork" target="_blank">
-                        <i class="bx bxl-upwork"></i>
-                    </a>
-                    <a href="https://muhammad-abdullah-arif-portfolio.netlify.app" class="social-link" title="Portfolio" target="_blank">
-                        <i class="bx bx-globe"></i>
-                    </a>
-                </div>
-            </div>
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="py-5 section-alt">
+  <div class="container">
+    <h2 class="section-title text-center mb-2">Professional <span class="text-accent">Certifications</span></h2>
+    <p class="text-center text-muted mb-5">14+ recognized certifications from leading institutions</p>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4"><div class="card card-hover h-100 border-0 shadow-sm p-3"><div class="d-flex gap-3"><i class="bi bi-file-code fs-2 text-accent"></i><div><h5 class="fw-bold">Python for Everybody</h5><p class="small text-muted mb-0">University of Michigan (Coursera) – data structures, web scraping, DB</p></div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card card-hover h-100 border-0 shadow-sm p-3"><div class="d-flex gap-3"><i class="bi bi-terminal fs-2 text-accent"></i><div><h5 class="fw-bold">Google IT Automation</h5><p class="small text-muted mb-0">Google (Coursera) – automation, scripting, IT infra with Python</p></div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card card-hover h-100 border-0 shadow-sm p-3"><div class="d-flex gap-3"><i class="bi bi-book fs-2 text-accent"></i><div><h5 class="fw-bold">CS105: Intro to Python</h5><p class="small text-muted mb-0">Saylor Academy – 77.20% grade, fundamental to intermediate</p></div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card card-hover h-100 border-0 shadow-sm p-3"><div class="d-flex gap-3"><i class="bi bi-award fs-2 text-accent"></i><div><h5 class="fw-bold">Basics of Python (CR641)</h5><p class="small text-muted mb-0">Cambridge Intl. / UniAthena – Level 7, 100/100</p></div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card card-hover h-100 border-0 shadow-sm p-3"><div class="d-flex gap-3"><i class="bi bi-code-square fs-2 text-accent"></i><div><h5 class="fw-bold">Python Basic – HackerRank</h5><p class="small text-muted mb-0">Certified problem-solving skills</p></div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card card-hover h-100 border-0 shadow-sm p-3"><div class="d-flex gap-3"><i class="bi bi-microsoft fs-2 text-accent"></i><div><h5 class="fw-bold">Python Programming Fundamentals</h5><p class="small text-muted mb-0">Microsoft (Coursera) – core concepts & best practices</p></div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card card-hover h-100 border-0 shadow-sm p-3"><div class="d-flex gap-3"><i class="bi bi-brain fs-2 text-accent"></i><div><h5 class="fw-bold">Python Programming Essentials</h5><p class="small text-muted mb-0">Rice University – hands-on coding</p></div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card card-hover h-100 border-0 shadow-sm p-3"><div class="d-flex gap-3"><i class="bi bi-mortarboard fs-2 text-accent"></i><div><h5 class="fw-bold">Free Python 101 Bootcamp</h5><p class="small text-muted mb-0">Udemy – beginner to intermediate</p></div></div></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card card-hover h-100 border-0 shadow-sm p-3"><div class="d-flex gap-3"><i class="bi bi-building fs-2 text-accent"></i><div><h5 class="fw-bold">Python Fundamentals – CFI</h5><p class="small text-muted mb-0">Corporate Finance Institute</p></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume" class="py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <h2 class="section-title">Why Work With Me?</h2>
+        <p class="text-muted">Computer Science teacher and Python developer who builds full-stack web applications and AI-powered tools alongside teaching. Ranked in top 10% of CS students with 3.5/4.0 GPA, backed by 14+ Python certifications.</p>
+        <div class="d-flex flex-column gap-2 mt-4">
+          <button class="resume-tab-btn active" data-tab="exp">Experience</button>
+          <button class="resume-tab-btn" data-tab="edu">Education</button>
+          <button class="resume-tab-btn" data-tab="skills">Skills</button>
+          <button class="resume-tab-btn" data-tab="about">About Me</button>
         </div>
-        
-        <!-- Profile Image -->
-        <div class="home-img">
-            <div class="img-box">
-                <div class="img-item">
-                    <img alt="Muhammad Abdullah Arif Profile" src="home.jpeg">
-                </div>
-            </div>
+      </div>
+      <div class="col-lg-8">
+        <!-- Experience -->
+        <div class="resume-content-pane active" id="pane-exp">
+          <div class="card border-0 shadow-sm p-4">
+            <h4 class="fw-bold">Professional <span class="text-accent">Experience</span></h4>
+            <div class="mt-3"><h5>Computer Science Teacher</h5><span class="badge bg-soft-accent text-accent">Dec 2024 – Present</span><p class="text-muted">SM Academy, Jhang</p><p>Teaching programming and computer science fundamentals to students from class 1 to 12. Designing customized, student-centered lesson plans using active-learning techniques. Building and maintaining real-world Python/AI projects alongside teaching duties.</p></div>
+            <hr />
+            <div><h5>Freelance Python Developer</h5><span class="badge bg-soft-accent text-accent">2023 – Present</span><p class="text-muted">Upwork / Self-Employed</p><p>Building full-stack web applications, AI chatbots, automation scripts, and custom software solutions for clients worldwide. Maintaining 95% client satisfaction rating with consistent quality delivery.</p></div>
+          </div>
         </div>
-    </section>
-
-    <!-- ============================================================
-                        CERTIFICATIONS SECTION
-    ============================================================ -->
-    <section class="services" id="services">
-        <h2 class="heading">Professional <span>Certifications</span></h2>
-        <div class="services-container">
-            
-            <!-- Python for Everybody -->
-            <div class="services-box">
-                <div class="icon-wrapper">
-                    <i class='bx bxl-python'></i>
-                </div>
-                <h3>Python for Everybody</h3>
-                <p>University of Michigan (Coursera) – Comprehensive Python programming specialization covering data structures, web scraping, and database integration.</p>
-            </div>
-
-            <!-- Google IT Automation -->
-            <div class="services-box">
-                <div class="icon-wrapper">
-                    <i class='bx bx-code-alt'></i>
-                </div>
-                <h3>Google IT Automation with Python</h3>
-                <p>Google (Coursera) – Professional certificate covering automation, scripting, and IT infrastructure management using Python.</p>
-            </div>
-
-            <!-- Introduction to Scripting -->
-            <div class="services-box">
-                <div class="icon-wrapper">
-                    <i class='bx bx-terminal'></i>
-                </div>
-                <h3>Introduction to Scripting</h3>
-                <p>Rice University (Coursera) – Specialization focused on Python scripting, automation, and real-world programming applications.</p>
-            </div>
-
-            <!-- CS105: Introduction to Python -->
-            <div class="services-box">
-                <div class="icon-wrapper">
-                    <i class='bx bx-book-open'></i>
-                </div>
-                <h3>CS105: Introduction to Python</h3>
-                <p>Saylor Academy – Comprehensive Python certification with 77.20% grade, covering fundamental to intermediate concepts.</p>
-            </div>
-
-            <!-- Basics of Python (CR641) -->
-            <div class="services-box">
-                <div class="icon-wrapper">
-                    <i class='bx bx-award'></i>
-                </div>
-                <h3>Basics of Python (CR641)</h3>
-                <p>Cambridge International Qualifications / UniAthena – Level 7 certification with perfect score of 100/100.</p>
-            </div>
-
-            <!-- Python Basic - HackerRank -->
-            <div class="services-box">
-                <div class="icon-wrapper">
-                    <i class='bx bx-code-curly'></i>
-                </div>
-                <h3>Python Basic - HackerRank</h3>
-                <p>HackerRank – Certified Python basic proficiency with demonstrated problem-solving skills.</p>
-            </div>
-
-            <!-- Python Programming Fundamentals -->
-            <div class="services-box">
-                <div class="icon-wrapper">
-                    <i class='bx bxl-microsoft'></i>
-                </div>
-                <h3>Python Programming Fundamentals</h3>
-                <p>Microsoft (Coursera) – Professional certification covering core Python programming concepts and best practices.</p>
-            </div>
-
-            <!-- Python Programming Essentials -->
-            <div class="services-box">
-                <div class="icon-wrapper">
-                    <i class='bx bx-brain'></i>
-                </div>
-                <h3>Python Programming Essentials</h3>
-                <p>Rice University (Coursera) – Essential Python programming skills with hands-on coding exercises.</p>
-            </div>
-
-            <!-- Free Python 101 -->
-            <div class="services-box">
-                <div class="icon-wrapper">
-                    <i class='bx bx-school'></i>
-                </div>
-                <h3>Free Python 101 Bootcamp</h3>
-                <p>Udemy – Comprehensive beginner-to-intermediate Python bootcamp with practical projects.</p>
-            </div>
-
-            <!-- Python Fundamentals - CFI -->
-            <div class="services-box">
-                <div class="icon-wrapper">
-                    <i class='bx bx-building'></i>
-                </div>
-                <h3>Python Fundamentals</h3>
-                <p>Corporate Finance Institute (Coursera) – Professional Python fundamentals certification.</p>
-            </div>
+        <!-- Education -->
+        <div class="resume-content-pane" id="pane-edu">
+          <div class="card border-0 shadow-sm p-4">
+            <h4 class="fw-bold">Educational <span class="text-accent">Background</span></h4>
+            <div class="mt-3"><h5>BS Computer Science</h5><span class="badge bg-soft-accent text-accent">2022 – 2026</span><p class="text-muted">Government Post Graduate College, Jhang</p><p><strong>GPA: 3.5/4.0</strong> | Top 10% of Class | Coursework: Data Structures, Algorithms, OOP, DB</p></div>
+            <hr />
+            <div><h5>Diploma in Computer Applications</h5><span class="badge bg-soft-accent text-accent">Oct 2021 – Mar 2022</span><p class="text-muted">Government Technical Training Institute, Jhang</p><p>Grade: A+ (94/100) | Punjab Board of Technical Education</p></div>
+            <hr />
+            <div><h5>Professional Certificate in Office Management</h5><span class="badge bg-soft-accent text-accent">Jun 2021</span><p class="text-muted">INFOCS Computer Literacy Centre, Jhang</p><p>Grade: A (574/600) | MS Office, Photoshop, CorelDRAW, InPage</p></div>
+          </div>
         </div>
-    </section>
-
-    <!-- ============================================================
-                            RESUME SECTION
-    ============================================================ -->
-    <section class="resume" id="resume">
-        <div class="resume-container">
-            
-            <!-- Resume Sidebar -->
-            <div class="resume-box resume-sidebar">
-                <h2>Why Work With Me?</h2>
-                <p class="desc">
-                    Computer Science teacher and Python developer who builds full-stack web applications 
-                    and AI-powered tools alongside teaching. Ranked in top 10% of CS students with 3.5/4.0 GPA, 
-                    backed by 14+ Python certifications from leading institutions.
-                </p>
-                
-                <!-- Tab Buttons -->
-                <div class="resume-tabs">
-                    <button class="resume-btn active" data-tab="experience">Experience</button>
-                    <button class="resume-btn" data-tab="education">Education</button>
-                    <button class="resume-btn" data-tab="skills">Skills</button>
-                    <button class="resume-btn" data-tab="about">About Me</button>
-                </div>
+        <!-- Skills -->
+        <div class="resume-content-pane" id="pane-skills">
+          <div class="card border-0 shadow-sm p-4">
+            <h4 class="fw-bold">Technical <span class="text-accent">Skills</span></h4>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <span class="skill-pill"><i class="bi bi-file-code"></i> Python</span>
+              <span class="skill-pill"><i class="bi bi-code-slash"></i> Django</span>
+              <span class="skill-pill"><i class="bi bi-bootstrap"></i> React.js</span>
+              <span class="skill-pill"><i class="bi bi-braces"></i> JavaScript</span>
+              <span class="skill-pill"><i class="bi bi-database"></i> MySQL</span>
+              <span class="skill-pill"><i class="bi bi-filetype-html"></i> HTML5</span>
+              <span class="skill-pill"><i class="bi bi-filetype-css"></i> CSS3</span>
+              <span class="skill-pill"><i class="bi bi-bootstrap-fill"></i> Bootstrap</span>
+              <span class="skill-pill"><i class="bi bi-cpu"></i> Machine Learning</span>
+              <span class="skill-pill"><i class="bi bi-github"></i> Git/GitHub</span>
+              <span class="skill-pill"><i class="bi bi-filetype-cpp"></i> C++</span>
+              <span class="skill-pill"><i class="bi bi-code"></i> C Language</span>
             </div>
-
-            <!-- Resume Content -->
-            <div class="resume-box resume-content">
-                
-                <!-- EXPERIENCE TAB -->
-                <div class="resume-detail experience active" id="experience-detail">
-                    <h2 class="heading">Professional <span>Experience</span></h2>
-                    <p class="desc">Computer Science teacher with hands-on development experience building real-world Python, Django, and AI-powered projects.</p>
-                    
-                    <div class="resume-list">
-                        <!-- Job 1 -->
-                        <div class="resume-item">
-                            <div class="resume-header">
-                                <h3>Computer Science Teacher</h3>
-                                <span class="year">Dec 2024 – Present</span>
-                            </div>
-                            <p class="company">SM Academy, Jhang</p>
-                            <p>Teaching programming and computer science fundamentals to students from class 1 to 12. Designing customized, student-centered lesson plans using active-learning techniques. Building and maintaining real-world Python/AI projects alongside teaching duties.</p>
-                        </div>
-
-                        <!-- Job 2 -->
-                        <div class="resume-item">
-                            <div class="resume-header">
-                                <h3>Freelance Python Developer</h3>
-                                <span class="year">2023 – Present</span>
-                            </div>
-                            <p class="company">Upwork / Self-Employed</p>
-                            <p>Building full-stack web applications, AI chatbots, automation scripts, and custom software solutions for clients worldwide. Maintaining 95% client satisfaction rating with consistent quality delivery.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- EDUCATION TAB -->
-                <div class="resume-detail education" id="education-detail">
-                    <h2 class="heading">Educational <span>Background</span></h2>
-                    <p class="desc">Strong academic foundation in Computer Science with GPA 3.5/4.0 and top 10% class ranking, complemented by 14+ Python certifications.</p>
-                    
-                    <div class="resume-list">
-                        <!-- Degree 1 -->
-                        <div class="resume-item">
-                            <div class="resume-header">
-                                <h3>Bachelor of Science in Computer Science</h3>
-                                <span class="year">2022 – 2026</span>
-                            </div>
-                            <p class="company">Government Post Graduate College, Jhang</p>
-                            <p><strong>GPA: 3.5/4.0</strong> | Top 10% of Class | Coursework: Data Structures, Algorithms, OOP, Database Management</p>
-                        </div>
-
-                        <!-- Degree 2 -->
-                        <div class="resume-item">
-                            <div class="resume-header">
-                                <h3>Diploma in Computer Applications</h3>
-                                <span class="year">Oct 2021 – Mar 2022</span>
-                            </div>
-                            <p class="company">Government Technical Training Institute, Jhang</p>
-                            <p>Grade: A+ (94/100) | Punjab Board of Technical Education, Lahore</p>
-                        </div>
-
-                        <!-- Degree 3 -->
-                        <div class="resume-item">
-                            <div class="resume-header">
-                                <h3>Professional Certificate in Office Management</h3>
-                                <span class="year">Jun 2021</span>
-                            </div>
-                            <p class="company">INFOCS Computer Literacy Centre, Jhang</p>
-                            <p>Grade: A (574/600) | MS Office, Photoshop, CorelDRAW, InPage</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SKILLS TAB -->
-                <div class="resume-detail skills" id="skills-detail">
-                    <h2 class="heading">Technical <span>Skills</span></h2>
-                    <p class="desc">Proficiency across full-stack development, AI/ML, and modern web technologies with demonstrated expertise through certifications and real-world projects.</p>
-                    
-                    <div class="resume-list skills-grid">
-                        <div class="skill-item">
-                            <i class='bx bxl-python'></i>
-                            <span>Python</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class='bx bxl-django'></i>
-                            <span>Django</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class='bx bxl-react'></i>
-                            <span>React.js</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class='bx bxl-javascript'></i>
-                            <span>JavaScript</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class='bx bxs-database'></i>
-                            <span>MySQL</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class='bx bxl-html5'></i>
-                            <span>HTML5</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class='bx bxl-css3'></i>
-                            <span>CSS3</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class='bx bxl-bootstrap'></i>
-                            <span>Bootstrap</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class='bx bx-brain'></i>
-                            <span>Machine Learning</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class='bx bxl-github'></i>
-                            <span>Git/GitHub</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class='bx bxl-c-plus-plus'></i>
-                            <span>C++</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class='bx bx-code-block'></i>
-                            <span>C Language</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ABOUT ME TAB -->
-                <div class="resume-detail about" id="about-detail">
-                    <h2 class="heading">About <span>Me</span></h2>
-                    <p class="desc">
-                        Passionate Computer Science teacher and Python developer dedicated to building secure, scalable, 
-                        and intelligent systems. Combining innovation with practical problem-solving across software development, 
-                        AI/ML, and technical education.
-                    </p>
-                    
-                    <div class="about-grid">
-                        <div class="about-item">
-                            <p>Full Name</p>
-                            <span>Muhammad Abdullah Arif</span>
-                        </div>
-                        <div class="about-item">
-                            <p>Gender</p>
-                            <span>Male</span>
-                        </div>
-                        <div class="about-item">
-                            <p>Age</p>
-                            <span>23 Years Old</span>
-                        </div>
-                        <div class="about-item">
-                            <p>City</p>
-                            <span>Jhang Sadar, Punjab</span>
-                        </div>
-                        <div class="about-item">
-                            <p>Nationality</p>
-                            <span>Pakistan</span>
-                        </div>
-                        <div class="about-item">
-                            <p>Experience</p>
-                            <span>1.5+ Years</span>
-                        </div>
-                        <div class="about-item">
-                            <p>Certifications</p>
-                            <span>14+ Recognized</span>
-                        </div>
-                        <div class="about-item">
-                            <p>Freelance Status</p>
-                            <span>95% Client Rating</span>
-                        </div>
-                        <div class="about-item">
-                            <p>Phone</p>
-                            <span>(+92) 336 7195002</span>
-                        </div>
-                        <div class="about-item">
-                            <p>Languages</p>
-                            <span>Urdu, English</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
-
-    <!-- ============================================================
-                            PORTFOLIO SECTION
-    ============================================================ -->
-    <section class="portfolio" id="portfolio">
-        <h2 class="heading">Featured <span>Projects</span></h2>
-        <div class="portfolio-container">
-            
-            <!-- Project 1: SLMS -->
-            <div class="portfolio-box">
-                <div class="portfolio-detail">
-                    <div class="project-header">
-                        <p class="numb">01</p>
-                        <i class="bx bx-code-curly"></i>
-                    </div>
-                    <h3>SLMS - Student Learning Management System</h3>
-                    <p>Django-based LMS with AI-powered MCQ generator that automatically creates assessment questions from course content. Published research paper on the AI engine.</p>
-                    <div class="tech">
-                        <span>Python</span>
-                        <span>Django</span>
-                        <span>AI</span>
-                        <span>MySQL</span>
-                        <span>NLP</span>
-                    </div>
-                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer" class="project-link" target="_blank">View Project <i class="bx bx-right-arrow-alt"></i></a>
-                </div>
+        <!-- About -->
+        <div class="resume-content-pane" id="pane-about">
+          <div class="card border-0 shadow-sm p-4">
+            <h4 class="fw-bold">About <span class="text-accent">Me</span></h4>
+            <p class="text-muted">Passionate Computer Science teacher and Python developer dedicated to building secure, scalable, and intelligent systems. Combining innovation with practical problem-solving across software development, AI/ML, and technical education.</p>
+            <div class="row g-3 mt-2">
+              <div class="col-6"><strong>Full Name</strong><br />Muhammad Abdullah Arif</div>
+              <div class="col-6"><strong>Gender</strong><br />Male</div>
+              <div class="col-6"><strong>Age</strong><br />23 Years Old</div>
+              <div class="col-6"><strong>City</strong><br />Jhang Sadar, Punjab</div>
+              <div class="col-6"><strong>Nationality</strong><br />Pakistan</div>
+              <div class="col-6"><strong>Experience</strong><br />1.5+ Years</div>
+              <div class="col-6"><strong>Certifications</strong><br />14+ Recognized</div>
+              <div class="col-6"><strong>Freelance Rating</strong><br />95% Client Rating</div>
+              <div class="col-6"><strong>Phone</strong><br />(+92) 336 7195002</div>
+              <div class="col-6"><strong>Languages</strong><br />Urdu, English</div>
             </div>
-
-            <!-- Project 2: SM Academy -->
-            <div class="portfolio-box">
-                <div class="portfolio-detail">
-                    <div class="project-header">
-                        <p class="numb">02</p>
-                        <i class="bx bx-globe"></i>
-                    </div>
-                    <h3>SM Academy - Full-Stack Educational Website</h3>
-                    <p>Complete SM Academy website built end-to-end with React JS frontend, Django/Python backend, MySQL database, and integrated AI chatbot for student support.</p>
-                    <div class="tech">
-                        <span>Python</span>
-                        <span>Django</span>
-                        <span>React JS</span>
-                        <span>MySQL</span>
-                        <span>AI Chatbot</span>
-                    </div>
-                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer" class="project-link" target="_blank">View Project <i class="bx bx-right-arrow-alt"></i></a>
-                </div>
-            </div>
-
-            <!-- Project 3: GCI Web Platform -->
-            <div class="portfolio-box">
-                <div class="portfolio-detail">
-                    <div class="project-header">
-                        <p class="numb">03</p>
-                        <i class="bx bx-server"></i>
-                    </div>
-                    <h3>GCJ Web Platform</h3>
-                    <p>Developed the GCJ platform with React JS frontend, Python/Django backend, MySQL database, and integrated AI chatbot for user queries and support.</p>
-                    <div class="tech">
-                        <span>React JS</span>
-                        <span>Django</span>
-                        <span>Python</span>
-                        <span>MySQL</span>
-                        <span>AI Chatbot</span>
-                    </div>
-                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer" class="project-link" target="_blank">View Project <i class="bx bx-right-arrow-alt"></i></a>
-                </div>
-            </div>
-
-            <!-- Project 4: AI Phishing Detector -->
-            <div class="portfolio-box">
-                <div class="portfolio-detail">
-                    <div class="project-header">
-                        <p class="numb">04</p>
-                        <i class="bx bx-shield-alt"></i>
-                    </div>
-                    <h3>AI Phishing Website Detector</h3>
-                    <p>Built a tool that analyzes URLs and webpage content with Python and AI to detect and flag phishing links for enhanced cybersecurity protection.</p>
-                    <div class="tech">
-                        <span>Python</span>
-                        <span>Machine Learning</span>
-                        <span>Cybersecurity</span>
-                    </div>
-                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer" class="project-link" target="_blank">View Project <i class="bx bx-right-arrow-alt"></i></a>
-                </div>
-            </div>
-
-            <!-- Project 5: AI Chatbot Framework -->
-            <div class="portfolio-box">
-                <div class="portfolio-detail">
-                    <div class="project-header">
-                        <p class="numb">05</p>
-                        <i class="bx bx-bot"></i>
-                    </div>
-                    <h3>AI Chatbot Framework</h3>
-                    <p>Designed a reusable conversational chatbot deployed across multiple projects, including SM Academy and GCI, to handle student and user queries intelligently.</p>
-                    <div class="tech">
-                        <span>Python</span>
-                        <span>AI/NLP</span>
-                        <span>Chatbot</span>
-                    </div>
-                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer" class="project-link" target="_blank">View Project <i class="bx bx-right-arrow-alt"></i></a>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- ============================================================
-                            CONTACT SECTION
-    ============================================================ -->
-    <section class="contact" id="contact">
-        <h2 class="heading">Get In <span>Touch</span></h2>
-        <div class="contact-container">
-            
-            <!-- Contact Information -->
-            <div class="contact-box contact-info">
-                <h3>Let's Collaborate</h3>
-                <p class="desc">
-                    I'm excited to work on your next project. Whether you need Python development, full-stack web applications, 
-                    AI-powered tools, or Computer Science mentoring—let's turn your ideas into reality.
-                </p>
-                
-                <div class="contact-detail">
-                    <i class='bx bxs-phone'></i>
-                    <div class="detail">
-                        <p>Phone</p>
-                        <p>(+92) 336 7195002</p>
-                    </div>
-                </div>
-                
-                <div class="contact-detail">
-                    <i class='bx bxs-envelope'></i>
-                    <div class="detail">
-                        <p>Email</p>
-                        <p>muhammadabdullaharif25july2002@gmail.com</p>
-                    </div>
-                </div>
-                
-                <div class="contact-detail">
-                    <i class='bx bxs-map'></i>
-                    <div class="detail">
-                        <p>Address</p>
-                        <p>Jhang Sadar, Punjab, Pakistan</p>
-                    </div>
-                </div>
-                
-                <div class="contact-detail">
-                    <i class='bx bxl-upwork'></i>
-                    <div class="detail">
-                        <p>Upwork Profile</p>
-                        <p>95% Client Satisfaction</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Contact Form -->
-            <div class="contact-box contact-form-box">
-                <form action="#" class="contact-form">
-                    <h3 class="form-heading">Send Me a Message</h3>
-                    <div class="field-box">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <input type="tel" placeholder="Phone Number" required>
-                        <input type="text" placeholder="Subject" required>
-                        <textarea placeholder="Your Message" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
+<!-- PORTFOLIO -->
+<section id="portfolio" class="py-5 section-alt">
+  <div class="container">
+    <h2 class="section-title text-center mb-2">Featured <span class="text-accent">Projects</span></h2>
+    <p class="text-center text-muted mb-5">Real-world applications built with Python, Django, React & AI</p>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4"><div class="card card-hover h-100 border-0 shadow-sm p-3"><span class="badge bg-dark text-white align-self-start">01</span><h5 class="mt-2">SLMS – Student Learning Management System</h5><p class="small text-muted">Django-based LMS with AI-powered MCQ generator. Published research paper on the AI engine.</p><div class="d-flex flex-wrap gap-1"><span class="badge-tech">Python</span><span class="badge-tech">Django</span><span class="badge-tech">AI</span></div><a href="#" class="btn btn-outline-accent btn-sm mt-3 rounded-pill"> </i></a></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card card-hover h-100 border-0 shadow-sm p-3"><span class="badge bg-dark text-white align-self-start">02</span><h5 class="mt-2">SM Academy – Full-Stack Educational Website</h5><p class="small text-muted">Complete SM Academy with React frontend, Django backend, MySQL, and AI chatbot.</p><div class="d-flex flex-wrap gap-1"><span class="badge-tech">React</span><span class="badge-tech">Django</span><span class="badge-tech">AI Chatbot</span></div><a href="#" class="btn btn-outline-accent btn-sm mt-3 rounded-pill"></i></a></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card card-hover h-100 border-0 shadow-sm p-3"><span class="badge bg-dark text-white align-self-start">03</span><h5 class="mt-2">GCJ Web Platform</h5><p class="small text-muted">React JS frontend, Django/Python backend, MySQL, integrated AI chatbot for user support.</p><div class="d-flex flex-wrap gap-1"><span class="badge-tech">React</span><span class="badge-tech">Django</span><span class="badge-tech">MySQL</span></div><a href="#" class="btn btn-outline-accent btn-sm mt-3 rounded-pill"></i></a></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card card-hover h-100 border-0 shadow-sm p-3"><span class="badge bg-dark text-white align-self-start">04</span><h5 class="mt-2">AI Phishing Website Detector</h5><p class="small text-muted">Analyzes URLs and content with Python & AI to detect phishing links.</p><div class="d-flex flex-wrap gap-1"><span class="badge-tech">Python</span><span class="badge-tech">ML</span><span class="badge-tech">Cybersecurity</span></div><a href="#" class="btn btn-outline-accent btn-sm mt-3 rounded-pill"></i></a></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card card-hover h-100 border-0 shadow-sm p-3"><span class="badge bg-dark text-white align-self-start">05</span><h5 class="mt-2">AI Chatbot Framework</h5><p class="small text-muted">Reusable conversational chatbot deployed across SM Academy, GCI, and more.</p><div class="d-flex flex-wrap gap-1"><span class="badge-tech">Python</span><span class="badge-tech">AI/NLP</span><span class="badge-tech">Chatbot</span></div><a href="#" class="btn btn-outline-accent btn-sm mt-3 rounded-pill"></i></a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-5">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <h2 class="section-title">Get In <span class="text-accent">Touch</span></h2>
+        <p class="text-muted">I'm excited to work on your next project. Whether you need Python development, full-stack web applications, AI-powered tools, or Computer Science mentoring—let's turn your ideas into reality.</p>
+        <div class="mt-4 d-flex flex-column gap-3">
+          <div><i class="bi bi-phone text-accent fs-4 me-3"></i> (+92) 336 7195002</div>
+          <div><i class="bi bi-envelope text-accent fs-4 me-3"></i> muhammadabdullaharif25july2002@gmail.com</div>
+          <div><i class="bi bi-geo-alt text-accent fs-4 me-3"></i> Jhang Sadar, Punjab, Pakistan</div>
+          <div><i class="bi bi-upwork text-accent fs-4 me-3"></i> Upwork · 95% Client Satisfaction</div>
         </div>
-    </section>
-
-    <!-- ============================================================
-                        FOOTER SECTION
-    ============================================================ -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2026 Muhammad Abdullah Arif. All rights reserved.</p>
-            <p class="tagline">Teach with Passion • Code with Purpose</p>
+      </div>
+      <div class="col-lg-7">
+        <div class="card border-0 shadow-sm p-4">
+          <h4 class="fw-bold mb-3">Send Me a Message</h4>
+          <form id="contactForm">
+            <div class="row g-3">
+              <div class="col-md-6"><input type="text" class="form-control" placeholder="Your Name" required /></div>
+              <div class="col-md-6"><input type="email" class="form-control" placeholder="Your Email" required /></div>
+              <div class="col-md-6"><input type="tel" class="form-control" placeholder="Phone Number" required /></div>
+              <div class="col-md-6"><input type="text" class="form-control" placeholder="Subject" required /></div>
+              <div class="col-12"><textarea class="form-control" rows="4" placeholder="Your Message" required></textarea></div>
+              <div class="col-12"><button type="submit" class="btn btn-accent px-5 py-2 rounded-pill">Send Message <i class="bi bi-arrow-right ms-1"></i></button></div>
+            </div>
+          </form>
         </div>
-    </footer>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Scripts -->
-    <script src="script.js"></script>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container text-center">
+    <p class="mb-0 small">&copy; 2026 Muhammad Abdullah Arif. All rights reserved. <span class="text-accent">Teach with Passion • Code with Purpose</span></p>
+  </div>
+</footer>
 
+<!-- SCROLL TOP -->
+<button id="scrollTop"><i class="bi bi-chevron-up"></i></button>
+<div class="toast-container"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  (function() {
+    // LOADER
+    const loader = document.getElementById('loaderWrapper');
+    const fill = document.getElementById('progressFill');
+    const pText = document.getElementById('progressText');
+    let p = 0;
+    const int = setInterval(() => {
+      p += Math.random() * 8 + 2;
+      if (p >= 100) { p = 100; clearInterval(int); }
+      if (fill) fill.style.width = p + '%';
+      if (pText) pText.textContent = Math.floor(p) + '%';
+      if (p === 100) setTimeout(() => loader.classList.add('hidden'), 400);
+    }, 100);
+    setTimeout(() => { if (loader && !loader.classList.contains('hidden')) loader.classList.add('hidden'); }, 3500);
+
+    // THEME
+    document.getElementById('themeToggle').addEventListener('click', function() {
+      document.body.classList.toggle('dark');
+      const icon = this.querySelector('i');
+      icon.className = document.body.classList.contains('dark') ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+    });
+
+    // SCROLL TOP
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 300);
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // RESUME TABS
+    const tabs = document.querySelectorAll('.resume-tab-btn');
+    const panes = {
+      exp: document.getElementById('pane-exp'),
+      edu: document.getElementById('pane-edu'),
+      skills: document.getElementById('pane-skills'),
+      about: document.getElementById('pane-about')
+    };
+    tabs.forEach(btn => {
+      btn.addEventListener('click', function() {
+        tabs.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        Object.keys(panes).forEach(key => panes[key].classList.remove('active'));
+        const target = this.dataset.tab;
+        if (panes[target]) panes[target].classList.add('active');
+      });
+    });
+
+    // CONTACT FORM TOAST
+    const form = document.getElementById('contactForm');
+    const toastContainer = document.querySelector('.toast-container');
+    function showToast(msg, type = 'success') {
+      const el = document.createElement('div');
+      el.className = 'toast align-items-center text-white border-0 show';
+      el.style.background = type === 'success' ? '#2d7a3a' : '#b02a37';
+      el.innerHTML = `<div class="d-flex"><div class="toast-body">${msg}</div><button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div>`;
+      toastContainer.appendChild(el);
+      setTimeout(() => el.remove(), 4500);
+    }
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const inputs = this.querySelectorAll('input, textarea');
+      let valid = true;
+      inputs.forEach(inp => { if (inp.hasAttribute('required') && !inp.value.trim()) valid = false; });
+      if (valid) { showToast('✅ Message sent! I\'ll get back to you soon.', 'success'); this.reset(); }
+      else showToast('⚠️ Please fill in all required fields.', 'danger');
+    });
+
+    // SMOOTH NAV
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  })();
+</script>
 </body>
-
 </html>
