@@ -6,14 +6,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Muhammad Abdullah Arif - Computer Science Teacher & Python Developer">
-    <meta name="keywords" content="Python, Django, Teacher, CS Teacher, Python Developer, Portfolio">
+    <meta name="description" content="Muhammad Abdullah Arif - Computer Science Teacher & Python Developer. Full-Stack Web Developer | AI & Machine Learning | Django & React Expert">
+    <meta name="keywords" content="Python Developer, Django, React, Computer Science Teacher, Full-Stack Development, AI Chatbot, Pakistan">
+    <meta name="author" content="Muhammad Abdullah Arif">
     
     <!-- Title -->
-    <title>Muhammad Abdullah Arif - CS Teacher & Python Developer</title>
+    <title>Muhammad Abdullah Arif | CS Teacher & Python Developer | Portfolio</title>
     
     <!-- Favicon -->
-    <link rel="icon" href="logo.jpeg" type="image/png">
+    <link rel="icon" href="logo.jpeg" type="image/jpeg">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
@@ -29,12 +30,19 @@
     ============================================================ -->
     <div class="loader-wrapper" id="loaderWrapper">
         <div class="loader-container">
+            <!-- Spinning Circle -->
             <div class="loader-circle"></div>
+            
+            <!-- Loading Text -->
             <div class="loader-text">LOADING</div>
+            
+            <!-- Progress Bar -->
             <div class="loader-progress">
                 <div class="loader-progress-fill" id="progressFill"></div>
             </div>
             <div class="loader-progress-text" id="progressText">0%</div>
+            
+            <!-- Pulsing Dots -->
             <div class="loader-dots">
                 <span></span>
                 <span></span>
@@ -47,14 +55,14 @@
                             HEADER SECTION
     ============================================================ -->
     <header class="active">
-        <a href="#home" class="logo">MAA</a>
+        <a href="#" class="logo">MAA</a>
         <i class="bx bx-menu" id="menu-icon"></i>
         <nav>
-            <a href="#home" class="active">Home</a>
-            <a href="#services">Certifications</a>
-            <a href="#resume">Resume</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#services" class="nav-link">Certifications</a>
+            <a href="#resume" class="nav-link">Resume</a>
+            <a href="#portfolio" class="nav-link">Portfolio</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </nav>
     </header>
 
@@ -77,41 +85,46 @@
         <div class="home-detail">
             <h1>Muhammad Abdullah Arif</h1>
             
+            <!-- Dynamic Headline -->
             <h2 class="dynamic-headline">
-                 I'm a <span class="dynamic-text" data-text="Computer Science Teacher">Computer Science Teacher</span>    
+                I'm a 
+                <span style="--i:1;" data-text="Computer Science Teacher">Computer Science Teacher</span>
                 <span style="--i:2;" data-text="Python Developer">Python Developer</span>
             </h2>
             
-            <p>
+            <!-- Description -->
+            <p class="intro-text">
                 Computer Science teacher and Python developer who builds full-stack web applications 
                 and AI-powered tools alongside teaching. Hands-on experience with Python, Django, React JS, 
                 and MySQL across real-world projects – including AI chatbots, automated MCQ generation, 
                 and a student learning management system.
             </p>
             
+            <!-- Call to Action -->
             <div class="btn-sci">
-                <a href="Muhammad_Abdullah_Arif_Resume.pdf" class="btn">Download CV</a>
+                <a href="Muhammad_Abdullah_Arif_Resume.pdf" class="btn btn-primary" title="Download Resume">Download CV</a>
                 <div class="sci">
-                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer" title="GitHub">
+                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer" class="social-link" title="GitHub" target="_blank">
                         <i class="bx bxl-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/muhammad-abdullah-arif-a0a0bb362/" title="LinkedIn">
+                    <a href="https://www.linkedin.com/in/muhammad-abdullah-arif-a0a0bb362/" class="social-link" title="LinkedIn" target="_blank">
                         <i class="bx bxl-linkedin"></i>
                     </a>
-                    <a href="https://www.upwork.com/freelancers/~0137628100a8547682" title="Upwork">
+                    <a href="https://www.upwork.com/freelancers/~0137628100a8547682" class="social-link" title="Upwork" target="_blank">
                         <i class="bx bxl-upwork"></i>
                     </a>
-                    <a href="https://muhammad-abdullah-arif-portfolio.netlify.app" title="Portfolio">
+                    <a href="https://muhammad-abdullah-arif-portfolio.netlify.app" class="social-link" title="Portfolio" target="_blank">
                         <i class="bx bx-globe"></i>
                     </a>
                 </div>
             </div>
         </div>
         
+        <!-- Profile Image -->
         <div class="home-img">
             <div class="img-box">
                 <div class="img-item">
-                    <img alt="Muhammad Abdullah Arif" src="home.jpeg">
+                    <img alt="Muhammad Abdullah Arif Profile" src="home.jpeg">
                 </div>
             </div>
         </div>
@@ -123,80 +136,91 @@
     <section class="services" id="services">
         <h2 class="heading">Professional <span>Certifications</span></h2>
         <div class="services-container">
+            
+            <!-- Python for Everybody -->
             <div class="services-box">
-                <div class="icon">
+                <div class="icon-wrapper">
                     <i class='bx bxl-python'></i>
                 </div>
-                <h3>Python for Everybody - Specialization</h3>
+                <h3>Python for Everybody</h3>
                 <p>University of Michigan (Coursera) – Comprehensive Python programming specialization covering data structures, web scraping, and database integration.</p>
             </div>
 
+            <!-- Google IT Automation -->
             <div class="services-box">
-                <div class="icon">
+                <div class="icon-wrapper">
                     <i class='bx bx-code-alt'></i>
                 </div>
                 <h3>Google IT Automation with Python</h3>
                 <p>Google (Coursera) – Professional certificate covering automation, scripting, and IT infrastructure management using Python.</p>
             </div>
 
+            <!-- Introduction to Scripting -->
             <div class="services-box">
-                <div class="icon">
+                <div class="icon-wrapper">
                     <i class='bx bx-terminal'></i>
                 </div>
-                <h3>Introduction to Scripting in Python</h3>
+                <h3>Introduction to Scripting</h3>
                 <p>Rice University (Coursera) – Specialization focused on Python scripting, automation, and real-world programming applications.</p>
             </div>
 
+            <!-- CS105: Introduction to Python -->
             <div class="services-box">
-                <div class="icon">
+                <div class="icon-wrapper">
                     <i class='bx bx-book-open'></i>
                 </div>
                 <h3>CS105: Introduction to Python</h3>
                 <p>Saylor Academy – Comprehensive Python certification with 77.20% grade, covering fundamental to intermediate concepts.</p>
             </div>
 
+            <!-- Basics of Python (CR641) -->
             <div class="services-box">
-                <div class="icon">
+                <div class="icon-wrapper">
                     <i class='bx bx-award'></i>
                 </div>
                 <h3>Basics of Python (CR641)</h3>
                 <p>Cambridge International Qualifications / UniAthena – Level 7 certification with perfect score of 100/100.</p>
             </div>
 
+            <!-- Python Basic - HackerRank -->
             <div class="services-box">
-                <div class="icon">
+                <div class="icon-wrapper">
                     <i class='bx bx-code-curly'></i>
                 </div>
                 <h3>Python Basic - HackerRank</h3>
                 <p>HackerRank – Certified Python basic proficiency with demonstrated problem-solving skills.</p>
             </div>
 
+            <!-- Python Programming Fundamentals -->
             <div class="services-box">
-                <div class="icon">
+                <div class="icon-wrapper">
                     <i class='bx bxl-microsoft'></i>
                 </div>
                 <h3>Python Programming Fundamentals</h3>
                 <p>Microsoft (Coursera) – Professional certification covering core Python programming concepts and best practices.</p>
             </div>
 
+            <!-- Python Programming Essentials -->
             <div class="services-box">
-                <div class="icon">
+                <div class="icon-wrapper">
                     <i class='bx bx-brain'></i>
                 </div>
                 <h3>Python Programming Essentials</h3>
                 <p>Rice University (Coursera) – Essential Python programming skills with hands-on coding exercises.</p>
             </div>
 
+            <!-- Free Python 101 -->
             <div class="services-box">
-                <div class="icon">
+                <div class="icon-wrapper">
                     <i class='bx bx-school'></i>
                 </div>
-                <h3>Free Python 101 Class Beginners Bootcamp</h3>
+                <h3>Free Python 101 Bootcamp</h3>
                 <p>Udemy – Comprehensive beginner-to-intermediate Python bootcamp with practical projects.</p>
             </div>
 
+            <!-- Python Fundamentals - CFI -->
             <div class="services-box">
-                <div class="icon">
+                <div class="icon-wrapper">
                     <i class='bx bx-building'></i>
                 </div>
                 <h3>Python Fundamentals</h3>
@@ -210,154 +234,152 @@
     ============================================================ -->
     <section class="resume" id="resume">
         <div class="resume-container">
-            <div class="resume-box">
+            
+            <!-- Resume Sidebar -->
+            <div class="resume-box resume-sidebar">
                 <h2>Why Work With Me?</h2>
                 <p class="desc">
                     Computer Science teacher and Python developer who builds full-stack web applications 
                     and AI-powered tools alongside teaching. Ranked in top 10% of CS students with 3.5/4.0 GPA, 
-                    backed by 14 Python certifications from Google, University of Michigan, and Saylor Academy.
+                    backed by 14+ Python certifications from leading institutions.
                 </p>
                 
-                <button class="resume-btn active" data-tab="experience">Experience</button>
-                <button class="resume-btn" data-tab="education">Education</button>
-                <button class="resume-btn" data-tab="skills">Skills</button>
-                <button class="resume-btn" data-tab="about">About Me</button>
+                <!-- Tab Buttons -->
+                <div class="resume-tabs">
+                    <button class="resume-btn active" data-tab="experience">Experience</button>
+                    <button class="resume-btn" data-tab="education">Education</button>
+                    <button class="resume-btn" data-tab="skills">Skills</button>
+                    <button class="resume-btn" data-tab="about">About Me</button>
+                </div>
             </div>
 
-            <div class="resume-box">
+            <!-- Resume Content -->
+            <div class="resume-box resume-content">
+                
+                <!-- EXPERIENCE TAB -->
                 <div class="resume-detail experience active" id="experience-detail">
                     <h2 class="heading">Professional <span>Experience</span></h2>
                     <p class="desc">Computer Science teacher with hands-on development experience building real-world Python, Django, and AI-powered projects.</p>
                     
                     <div class="resume-list">
+                        <!-- Job 1 -->
                         <div class="resume-item">
-                            <p class="year">Dec 2024 – Present</p>
-                            <h3>Computer Science Teacher</h3>
+                            <div class="resume-header">
+                                <h3>Computer Science Teacher</h3>
+                                <span class="year">Dec 2024 – Present</span>
+                            </div>
                             <p class="company">SM Academy, Jhang</p>
                             <p>Teaching programming and computer science fundamentals to students from class 1 to 12. Designing customized, student-centered lesson plans using active-learning techniques. Building and maintaining real-world Python/AI projects alongside teaching duties.</p>
                         </div>
 
+                        <!-- Job 2 -->
                         <div class="resume-item">
-                            <p class="year">2023 – Present</p>
-                            <h3>Freelance Python Developer</h3>
+                            <div class="resume-header">
+                                <h3>Freelance Python Developer</h3>
+                                <span class="year">2023 – Present</span>
+                            </div>
                             <p class="company">Upwork / Self-Employed</p>
-                            <p>Building full-stack web applications, AI chatbots, automation scripts, and custom software solutions for clients worldwide. 95% client satisfaction rating.</p>
+                            <p>Building full-stack web applications, AI chatbots, automation scripts, and custom software solutions for clients worldwide. Maintaining 95% client satisfaction rating with consistent quality delivery.</p>
                         </div>
                     </div>
                 </div>
 
+                <!-- EDUCATION TAB -->
                 <div class="resume-detail education" id="education-detail">
                     <h2 class="heading">Educational <span>Background</span></h2>
                     <p class="desc">Strong academic foundation in Computer Science with GPA 3.5/4.0 and top 10% class ranking, complemented by 14+ Python certifications.</p>
                     
                     <div class="resume-list">
+                        <!-- Degree 1 -->
                         <div class="resume-item">
-                            <p class="year">2022 – 2026</p>
-                            <h3>Bachelor of Science in Computer Science</h3>
+                            <div class="resume-header">
+                                <h3>Bachelor of Science in Computer Science</h3>
+                                <span class="year">2022 – 2026</span>
+                            </div>
                             <p class="company">Government Post Graduate College, Jhang</p>
                             <p><strong>GPA: 3.5/4.0</strong> | Top 10% of Class | Coursework: Data Structures, Algorithms, OOP, Database Management</p>
                         </div>
 
+                        <!-- Degree 2 -->
                         <div class="resume-item">
-                            <p class="year">Oct 2021 – Mar 2022</p>
-                            <h3>Diploma in Computer Applications</h3>
+                            <div class="resume-header">
+                                <h3>Diploma in Computer Applications</h3>
+                                <span class="year">Oct 2021 – Mar 2022</span>
+                            </div>
                             <p class="company">Government Technical Training Institute, Jhang</p>
                             <p>Grade: A+ (94/100) | Punjab Board of Technical Education, Lahore</p>
                         </div>
 
+                        <!-- Degree 3 -->
                         <div class="resume-item">
-                            <p class="year">Jun 2021</p>
-                            <h3>Professional Certificate in Office Management</h3>
+                            <div class="resume-header">
+                                <h3>Professional Certificate in Office Management</h3>
+                                <span class="year">Jun 2021</span>
+                            </div>
                             <p class="company">INFOCS Computer Literacy Centre, Jhang</p>
                             <p>Grade: A (574/600) | MS Office, Photoshop, CorelDRAW, InPage</p>
                         </div>
                     </div>
                 </div>
 
+                <!-- SKILLS TAB -->
                 <div class="resume-detail skills" id="skills-detail">
                     <h2 class="heading">Technical <span>Skills</span></h2>
                     <p class="desc">Proficiency across full-stack development, AI/ML, and modern web technologies with demonstrated expertise through certifications and real-world projects.</p>
                     
-                    <div class="resume-list">
-                        <div class="resume-item">
+                    <div class="resume-list skills-grid">
+                        <div class="skill-item">
                             <i class='bx bxl-python'></i>
                             <span>Python</span>
                         </div>
-                        <div class="resume-item">
-                            <i class='bx bxl-c-plus-plus'></i>
-                            <span>C++</span>
-                        </div>
-                        <div class="resume-item">
-                            <i class='bx bxl-javascript'></i>
-                            <span>JavaScript (ES6+)</span>
-                        </div>
-                        <div class="resume-item">
-                            <i class='bx bx-code-block'></i>
-                            <span>C</span>
-                        </div>
-                        <div class="resume-item">
+                        <div class="skill-item">
                             <i class='bx bxl-django'></i>
                             <span>Django</span>
                         </div>
-                        <div class="resume-item">
+                        <div class="skill-item">
                             <i class='bx bxl-react'></i>
                             <span>React.js</span>
                         </div>
-                        <div class="resume-item">
-                            <i class='bx bxl-html5'></i>
-                            <span>HTML5</span>
+                        <div class="skill-item">
+                            <i class='bx bxl-javascript'></i>
+                            <span>JavaScript</span>
                         </div>
-                        <div class="resume-item">
-                            <i class='bx bxl-css3'></i>
-                            <span>CSS3</span>
-                        </div>
-                        <div class="resume-item">
-                            <i class='bx bxl-bootstrap'></i>
-                            <span>Bootstrap 5</span>
-                        </div>
-                        <div class="resume-item">
+                        <div class="skill-item">
                             <i class='bx bxs-database'></i>
                             <span>MySQL</span>
                         </div>
-                        <div class="resume-item">
-                            <i class='bx bxs-data'></i>
-                            <span>SQLite</span>
+                        <div class="skill-item">
+                            <i class='bx bxl-html5'></i>
+                            <span>HTML5</span>
                         </div>
-                        <div class="resume-item">
+                        <div class="skill-item">
+                            <i class='bx bxl-css3'></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class='bx bxl-bootstrap'></i>
+                            <span>Bootstrap</span>
+                        </div>
+                        <div class="skill-item">
                             <i class='bx bx-brain'></i>
-                            <span>Chatbot Development</span>
-                        </div>
-                        <div class="resume-item">
-                            <i class='bx bx-chart'></i>
                             <span>Machine Learning</span>
                         </div>
-                        <div class="resume-item">
+                        <div class="skill-item">
                             <i class='bx bxl-github'></i>
                             <span>Git/GitHub</span>
                         </div>
-                        <div class="resume-item">
-                            <i class='bx bx-code'></i>
-                            <span>VS Code</span>
+                        <div class="skill-item">
+                            <i class='bx bxl-c-plus-plus'></i>
+                            <span>C++</span>
                         </div>
-                        <div class="resume-item">
-                            <i class='bx bx-notebook'></i>
-                            <span>Jupyter Notebook</span>
-                        </div>
-                        <div class="resume-item">
-                            <i class='bx bx-bulb'></i>
-                            <span>Problem Solving</span>
-                        </div>
-                        <div class="resume-item">
-                            <i class='bx bx-group'></i>
-                            <span>Team Collaboration</span>
-                        </div>
-                        <div class="resume-item">
-                            <i class='bx bx-chalkboard'></i>
-                            <span>Active-Learning Design</span>
+                        <div class="skill-item">
+                            <i class='bx bx-code-block'></i>
+                            <span>C Language</span>
                         </div>
                     </div>
                 </div>
 
+                <!-- ABOUT ME TAB -->
                 <div class="resume-detail about" id="about-detail">
                     <h2 class="heading">About <span>Me</span></h2>
                     <p class="desc">
@@ -366,42 +388,46 @@
                         AI/ML, and technical education.
                     </p>
                     
-                    <div class="resume-list">
-                        <div class="resume-item">
-                            <p>Full Name <span>Muhammad Abdullah Arif</span></p>
+                    <div class="about-grid">
+                        <div class="about-item">
+                            <p>Full Name</p>
+                            <span>Muhammad Abdullah Arif</span>
                         </div>
-                        <div class="resume-item">
-                            <p>Gender <span>Male</span></p>
+                        <div class="about-item">
+                            <p>Gender</p>
+                            <span>Male</span>
                         </div>
-                        <div class="resume-item">
-                            <p>Age <span>23 Years Old</span></p>
+                        <div class="about-item">
+                            <p>Age</p>
+                            <span>23 Years Old</span>
                         </div>
-                        <div class="resume-item">
-                            <p>City <span>Jhang Sadar, Punjab, Pakistan</span></p>
+                        <div class="about-item">
+                            <p>City</p>
+                            <span>Jhang Sadar, Punjab</span>
                         </div>
-                        <div class="resume-item">
-                            <p>Nationality <span>Pakistan</span></p>
+                        <div class="about-item">
+                            <p>Nationality</p>
+                            <span>Pakistan</span>
                         </div>
-                        <div class="resume-item">
-                            <p>Experience <span>1.5+ Years</span></p>
+                        <div class="about-item">
+                            <p>Experience</p>
+                            <span>1.5+ Years</span>
                         </div>
-                        <div class="resume-item">
-                            <p>Python Certifications <span>14+ Recognized</span></p>
+                        <div class="about-item">
+                            <p>Certifications</p>
+                            <span>14+ Recognized</span>
                         </div>
-                        <div class="resume-item">
-                            <p>Full-Time <span>Available</span></p>
+                        <div class="about-item">
+                            <p>Freelance Status</p>
+                            <span>95% Client Rating</span>
                         </div>
-                        <div class="resume-item">
-                            <p>Freelance <span>Available (95% Rating)</span></p>
+                        <div class="about-item">
+                            <p>Phone</p>
+                            <span>(+92) 336 7195002</span>
                         </div>
-                        <div class="resume-item">
-                            <p>Phone <span>(+92) 336 7195002</span></p>
-                        </div>
-                        <div class="resume-item">
-                            <p>Languages <span>Urdu (Native), English (B2)</span></p>
-                        </div>
-                        <div class="resume-item">
-                            <p>Email <span>muhammadabdullaharif25july2002@gmail.com</span></p>
+                        <div class="about-item">
+                            <p>Languages</p>
+                            <span>Urdu, English</span>
                         </div>
                     </div>
                 </div>
@@ -415,51 +441,100 @@
     <section class="portfolio" id="portfolio">
         <h2 class="heading">Featured <span>Projects</span></h2>
         <div class="portfolio-container">
+            
+            <!-- Project 1: SLMS -->
             <div class="portfolio-box">
                 <div class="portfolio-detail">
-                    <p class="numb">01</p>
-                    <h3>SLMS - Student Learning Management System</h3>
-                    <p>Django-based LMS with an AI-powered MCQ generator that automatically creates assessment questions from course content. Published research paper on the AI engine.</p>
-                    <div class="tech">
-                        <p>Python, Django, AI, MySQL, NLP</p>
+                    <div class="project-header">
+                        <p class="numb">01</p>
+                        <i class="bx bx-code-curly"></i>
                     </div>
-                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer/SLMS-Complete" target="_blank">View Project</a>
+                    <h3>SLMS - Student Learning Management System</h3>
+                    <p>Django-based LMS with AI-powered MCQ generator that automatically creates assessment questions from course content. Published research paper on the AI engine.</p>
+                    <div class="tech">
+                        <span>Python</span>
+                        <span>Django</span>
+                        <span>AI</span>
+                        <span>MySQL</span>
+                        <span>NLP</span>
+                    </div>
+                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer" class="project-link" target="_blank">View Project <i class="bx bx-right-arrow-alt"></i></a>
                 </div>
             </div>
 
+            <!-- Project 2: SM Academy -->
             <div class="portfolio-box">
                 <div class="portfolio-detail">
-                    <p class="numb">02</p>
+                    <div class="project-header">
+                        <p class="numb">02</p>
+                        <i class="bx bx-globe"></i>
+                    </div>
                     <h3>SM Academy - Full-Stack Educational Website</h3>
                     <p>Complete SM Academy website built end-to-end with React JS frontend, Django/Python backend, MySQL database, and integrated AI chatbot for student support.</p>
                     <div class="tech">
-                        <p>Python, Django, React JS, MySQL, AI Chatbot</p>
+                        <span>Python</span>
+                        <span>Django</span>
+                        <span>React JS</span>
+                        <span>MySQL</span>
+                        <span>AI Chatbot</span>
                     </div>
-                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer/SM_ACADEMY" target="_blank">View Project</a>
+                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer" class="project-link" target="_blank">View Project <i class="bx bx-right-arrow-alt"></i></a>
                 </div>
             </div>
 
+            <!-- Project 3: GCI Web Platform -->
             <div class="portfolio-box">
                 <div class="portfolio-detail">
-                    <p class="numb">03</p>
+                    <div class="project-header">
+                        <p class="numb">03</p>
+                        <i class="bx bx-server"></i>
+                    </div>
                     <h3>GCJ Web Platform</h3>
-                    <p>Developed the GCJ platform with React JS frontend, Python/Django backend, MySQL database, and integrated AI chatbot for user queries.</p>
+                    <p>Developed the GCJ platform with React JS frontend, Python/Django backend, MySQL database, and integrated AI chatbot for user queries and support.</p>
                     <div class="tech">
-                        <p>React JS, Django, Python, MySQL, AI Chatbot</p>
+                        <span>React JS</span>
+                        <span>Django</span>
+                        <span>Python</span>
+                        <span>MySQL</span>
+                        <span>AI Chatbot</span>
                     </div>
-                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer/GCJ" target="_blank">View Project</a>
+                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer" class="project-link" target="_blank">View Project <i class="bx bx-right-arrow-alt"></i></a>
                 </div>
             </div>
 
+            <!-- Project 4: AI Phishing Detector -->
             <div class="portfolio-box">
                 <div class="portfolio-detail">
-                    <p class="numb">04</p>
-                    <h3>AI Phishing Website Detector</h3>
-                    <p>Built a tool that analyzes URLs and webpage content with Python and AI to detect and flag phishing links for enhanced cybersecurity.</p>
-                    <div class="tech">
-                        <p>Python, Machine Learning, Cybersecurity</p>
+                    <div class="project-header">
+                        <p class="numb">04</p>
+                        <i class="bx bx-shield-alt"></i>
                     </div>
-                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer/PWSD" target="_blank">View Project</a>
+                    <h3>AI Phishing Website Detector</h3>
+                    <p>Built a tool that analyzes URLs and webpage content with Python and AI to detect and flag phishing links for enhanced cybersecurity protection.</p>
+                    <div class="tech">
+                        <span>Python</span>
+                        <span>Machine Learning</span>
+                        <span>Cybersecurity</span>
+                    </div>
+                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer" class="project-link" target="_blank">View Project <i class="bx bx-right-arrow-alt"></i></a>
+                </div>
+            </div>
+
+            <!-- Project 5: AI Chatbot Framework -->
+            <div class="portfolio-box">
+                <div class="portfolio-detail">
+                    <div class="project-header">
+                        <p class="numb">05</p>
+                        <i class="bx bx-bot"></i>
+                    </div>
+                    <h3>AI Chatbot Framework</h3>
+                    <p>Designed a reusable conversational chatbot deployed across multiple projects, including SM Academy and GCI, to handle student and user queries intelligently.</p>
+                    <div class="tech">
+                        <span>Python</span>
+                        <span>AI/NLP</span>
+                        <span>Chatbot</span>
+                    </div>
+                    <a href="https://github.com/muhammadabdullaharif-pythonProgrammer" class="project-link" target="_blank">View Project <i class="bx bx-right-arrow-alt"></i></a>
                 </div>
             </div>
         </div>
@@ -469,13 +544,15 @@
                             CONTACT SECTION
     ============================================================ -->
     <section class="contact" id="contact">
+        <h2 class="heading">Get In <span>Touch</span></h2>
         <div class="contact-container">
-            <div class="contact-box">
-                <h2>Let's Collaborate</h2>
+            
+            <!-- Contact Information -->
+            <div class="contact-box contact-info">
+                <h3>Let's Collaborate</h3>
                 <p class="desc">
                     I'm excited to work on your next project. Whether you need Python development, full-stack web applications, 
-                    AI-powered tools, or Computer Science mentoring—let's turn your ideas into reality with efficient, scalable, 
-                    and secure solutions.
+                    AI-powered tools, or Computer Science mentoring—let's turn your ideas into reality.
                 </p>
                 
                 <div class="contact-detail">
@@ -506,42 +583,40 @@
                     <i class='bx bxl-upwork'></i>
                     <div class="detail">
                         <p>Upwork Profile</p>
-                        <p>95% Client Satisfaction Rating</p>
-                    </div>
-                </div>
-                
-                <div class="contact-detail">
-                    <i class='bx bx-globe'></i>
-                    <div class="detail">
-                        <p>Portfolio</p>
-                        <p>muhammad-abdullah-arif-portfolio.netlify.app</p>
+                        <p>95% Client Satisfaction</p>
                     </div>
                 </div>
             </div>
             
-            <div class="contact-box">
-                <form action="#">
-                    <h2 class="heading">Send Me a <span>Message</span></h2>
+            <!-- Contact Form -->
+            <div class="contact-box contact-form-box">
+                <form action="#" class="contact-form">
+                    <h3 class="form-heading">Send Me a Message</h3>
                     <div class="field-box">
-                        <input type="text" placeholder="Full Name" required>
-                        <input type="email" placeholder="Email Address" required>
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
                         <input type="tel" placeholder="Phone Number" required>
-                        <input type="text" placeholder="Email Subject" required>
+                        <input type="text" placeholder="Subject" required>
                         <textarea placeholder="Your Message" required></textarea>
                     </div>
-                    <button type="submit" class="btn">Send Message</button>
+                    
+                    <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- ============================================================
-                            FOOTER SECTION
+                        FOOTER SECTION
     ============================================================ -->
     <footer class="footer">
-        <p>&copy; 2026 Muhammad Abdullah Arif. All rights reserved. | <span>Teach with Passion</span> • <span>Code with Purpose</span></p>
+        <div class="footer-content">
+            <p>&copy; 2026 Muhammad Abdullah Arif. All rights reserved.</p>
+            <p class="tagline">Teach with Passion • Code with Purpose</p>
+        </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="script.js"></script>
 
 </body>
