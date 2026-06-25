@@ -30,7 +30,6 @@ window.addEventListener('load', function() {
         progressText.textContent = Math.floor(progress) + '%';
     }, 120);
     
-    // Safety fallback
     setTimeout(() => {
         if (!loader.classList.contains('hidden')) {
             loader.classList.add('hidden');
@@ -39,7 +38,6 @@ window.addEventListener('load', function() {
     }, 3500);
 });
 
-// Prevent scrolling during loading
 document.body.style.overflow = 'hidden';
 
 // ===== Mobile Menu Toggle =====
@@ -50,7 +48,6 @@ if (menuIcon) {
     });
 }
 
-// ===== Close mobile menu when clicking a link =====
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         nav.classList.remove('active');
@@ -89,7 +86,6 @@ function handleNavigation() {
     }
 }
 
-// ===== Smooth Scroll for Navigation =====
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
