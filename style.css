@@ -204,8 +204,9 @@ section:last-of-type {
     align-items: center;
     gap: 5rem;
     flex-wrap: wrap;
-    min-height: auto;
+    min-height: 80vh;
     padding-top: 2rem;
+    
 }
 
 .home-detail {
