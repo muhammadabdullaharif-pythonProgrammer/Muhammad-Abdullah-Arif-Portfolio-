@@ -55,54 +55,82 @@ navLinks.forEach(link => {
     });
 });
 
-// ===== Navigation & Section Switching =====
 function handleNavigation() {
-    const hash = window.location.hash || '#home';
-    const targetId = hash.substring(1);
-    
-    sections.forEach(section => {
-        if (section.id === targetId || (targetId === '' && section.id === 'home')) {
-            section.classList.add('active');
-        } else {
-            section.classList.remove('active');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        const linkHash = link.getAttribute('href');
-        if (linkHash === hash || (hash === '#home' && linkHash === '#home')) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-    
-    if (header) header.classList.add('active');
-    
-    if (barsBox && barsBox.classList.contains('active')) {
-        setTimeout(() => {
-            barsBox.classList.remove('active');
-        }, 500);
-    }
+const hash = window.location.hash || '#home';
+const targetId = hash.substring(1);
+
+```
+sections.forEach(section => {
+    section.classList.remove('active');
+    section.style.display = 'none';
+});
+
+const activeSection = document.getElementById(targetId);
+
+if (activeSection) {
+    activeSection.classList.add('active');
+    activeSection.style.display = 'block';
 }
 
 navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        
-        if (targetSection) {
-            history.pushState(null, null, `#${targetId}`);
-            handleNavigation();
-            
-            targetSection.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
+    link.classList.remove('active');
+
+    if (link.getAttribute('href') === hash) {
+        link.classList.add('active');
+    }
 });
+
+if (header) {
+    header.classList.add('active');
+}
+
+if (barsBox && barsBox.classList.contains('active')) {
+    setTimeout(() => {
+        barsBox.classList.remove('active');
+    }, 500);
+}
+```
+
+}
+
+navLinks.forEach(link => {
+link.addEventListener('click', (e) => {
+e.preventDefault();
+
+```
+    const targetId = link.getAttribute('href').replace('#', '');
+
+    history.pushState(null, null, `#${targetId}`);
+
+    handleNavigation();
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+
+    nav.classList.remove('active');
+
+    if (menuIcon) {
+        menuIcon.classList.remove('bx-x');
+    }
+});
+```
+
+});
+
+window.addEventListener('load', () => {
+if (!window.location.hash) {
+window.location.hash = '#home';
+}
+
+```
+handleNavigation();
+```
+
+});
+
+window.addEventListener('hashchange', handleNavigation);
 
 // ===== Resume Tab Switching =====
 if (resumeBtns.length > 0) {
